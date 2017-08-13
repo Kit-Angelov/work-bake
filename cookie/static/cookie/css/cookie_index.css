@@ -1,0 +1,388 @@
+body{
+    margin: 0;
+    height: auto;
+}
+
+.main-wrapp{
+    position: absolute;
+    width: 100%;
+    height: auto;
+    background-color: #003366;
+    z-index: 1;
+}
+
+.back-top{
+    position: absolute;
+    width: 100%;
+    height: 150px;
+    background-color: saddlebrown;
+    z-index: 2;
+}
+
+.back-middle{
+    position: absolute;
+    width: 100%;
+    height: 400px;
+    margin-top: 150px;
+    background-color: darkorchid;
+    z-index: 2;
+}
+
+/*core wrap*/
+
+.wrapper{
+    position: relative;
+    width: 1200px;
+    height: auto;
+    margin: auto;
+    margin-top: 100px;
+    background-color: #5b80b2;
+    z-index: 3;
+}
+
+.menu{
+    width: 100%;
+    height: 50px;
+    background: ghostwhite;
+}
+
+.wrapp-logo{
+    width: 150px;
+    height: 150px;
+    margin: auto;
+}
+
+.logo{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    margin-top: -50px;
+    background-color: #003366;
+    z-index: 11;
+}
+
+/*slider*/
+
+.slider{
+    width: 100%;
+    height: 400px;
+    background-color: #79aec8;
+}
+
+.slide{
+    display: inline-block;
+    position: relative;
+}
+
+.first-slide{
+
+}
+
+.second-slide{
+
+}
+
+.third-slide{
+
+}
+
+.forth-slide{
+
+}
+
+.hit-week{
+    display: inline-block;
+    position: absolute;
+    width: 700px;
+    height: 200px;
+    top: 100px;
+    left: 250px;
+    background-color: #79aec8;
+}
+
+/*main body*/
+
+.body-wrapp{
+    width: 1080px;
+    height: auto;
+    margin: auto;
+    background-color: cornsilk;
+    z-index: 4;
+}
+
+.space {
+    width: 100%;
+    margin: auto;
+}
+
+.float-left{
+    float: left;
+}
+
+.row-after-slider{
+    height: 50px;
+    background-color: #777777;
+}
+
+.divide-wrapp{
+    width: 100%;
+    height: 0px;
+    margin: auto;
+    float: left;
+    z-index: 21;
+}
+
+.divide{
+    width: 50%;
+    height: 1px;
+    margin: auto;
+    background-color: black;
+    z-index: 22;
+}
+
+.wrapp-figure{
+    width: 50px;
+    height: 20px;
+    margin: auto;
+}
+
+.figure{
+    position: absolute;
+    width: 50px;
+    height: 20px;
+    margin-top: -10px;
+    background-color: #003366;
+    z-index: 11;
+}
+
+.row-after-divide{
+    height: 50px;
+    background-color: #777777;
+}
+
+/*about company*/
+
+.row-about-company{
+    width: 100%;
+    height: auto;
+    background-color: darkgoldenrod;
+}
+
+.title-about-company{
+    width: 200px;
+    height: 50px;
+    margin: auto;
+    background-color: #993333;
+}
+
+.text-about-company{
+    width: 100%;
+    height: 200px;
+    margin: auto;
+    background-color: burlywood;
+}
+
+.row-after-about-company{
+    height: 50px;
+    background-color: #777777;
+}
+
+/*our pluses*/
+
+.row-our-pluses{
+    width: 100%;
+    height: 300px;
+    background-color: lawngreen;
+}
+
+.plus{
+    width: 340px;
+    height: 300px;
+    background-color: darkgreen;
+}
+
+.space-between-pluses{
+    width: 30px;
+    height: 300px;
+    background-color: darkorchid;
+    float: left;
+}
+
+.left-plus{
+    float: left;
+}
+
+.middle-plus{
+    float: left;
+}
+
+.right-plus{
+    float: right;
+}
+
+.row-after-pluses{
+    height: 50px;
+    background-color: #777777;
+}
+
+/*our products*/
+
+.row-our-production{
+    width: 100%;
+    height: 750px;
+    background-color: #447e9b;
+}
+
+.row-title-our-production{
+    width: 100%;
+    height: 70px;
+    background-color: #79aec8;
+}
+
+.title-our-production{
+    width: 300px;
+    height: 70px;
+    margin: auto;
+    background-color: aqua;
+}
+
+.row-after-title-procucts{
+    height: 50px;
+    background-color: #ddffdd;
+}
+
+.space-between-product{
+    width: 30px;
+    height: 290px;
+    float: left;
+    background-color: #777777;
+}
+
+.row-our-production-feature{
+    width: 100%;
+    height: auto;
+}
+
+.first-row-our-production{
+
+}
+
+.row-after-first-procucts{
+    height: 50px;
+    background-color: #79aec8;
+    float: left;
+}
+
+.second-row-our-production{
+
+}
+
+.product{
+    width: 340px;
+    height: auto;
+    float: left;
+}
+
+
+
+.product-pic{
+    width: 340px;
+    height: 190px;
+    background-color: #993333;
+}
+
+.product-descript{
+    width: 340px;
+    height: 100px;
+    background-color: coral;
+}
+
+.name-product{
+    width: 340px;
+    height: 50px;
+    background-color: #ba2121;
+}
+
+.text-product{
+    width: 340px;
+    height: 50px;
+    background-color: deeppink;
+}
+
+.row-after-our-products{
+    height: 50px;
+    background-color: #777777;
+}
+
+/*our contacts*/
+
+.row-our-contacts{
+    width: 100%;
+    height: auto;
+    background-color: darkgoldenrod;
+}
+
+.title-our-contacts{
+    width: 200px;
+    height: 50px;
+    margin: auto;
+    background-color: #993333;
+}
+
+.text-our-contacts{
+    width: 100%;
+    height: 200px;
+    margin: auto;
+    background-color: burlywood;
+}
+
+.row-list-contacts{
+    width: 780px;
+    margin: auto;
+    height: 100px;
+    background-color: gold;
+}
+
+.elem-contacts{
+    width: 240px;
+    height: 100px;
+    background-color: darkslategrey;
+    float: left;
+}
+
+.divide-between-contacts{
+    width: 30px;
+    height: 100px;
+    background-color: chartreuse;
+    float: left;
+}
+
+.row-after-body-wrapp{
+    height: 50px;
+    background-color: #79aec8;
+}
+
+.main-map{
+    width: 100%;
+    height: 310px!important;
+    background-color: yellow;
+}
+
+.footer{
+    width: 100%;
+    height: 220px;
+    background-color: brown;
+}
+
+.footer-wrapp{
+    width: 1080px;
+    height: 220px;
+    margin: auto;
+}
+
+.footer-part{
+    width: 360px;
+    float: left;
+    height: 220px;
+    background-color: #333333;
+}
