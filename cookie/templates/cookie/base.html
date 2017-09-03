@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="{% static 'cookie/css/cookie_index.css' %}" />
+    <link href="{% static 'cookie/js/jquery_slider/jquery.bxslider.css' %}" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <title>Кондитерский дом Исаева</title>
+</head>
+
+<body>
+    <div class="main-wrapp">
+        <div class="back-top"></div>
+        <div class="back-middle"></div>
+        <div class="wrapper">
+            <div class="wrapp-menu">
+                <div class="menu-line menu-top-line"></div>
+                <div class="menu">
+                    <div class="wrapp-left-menu">
+                        <div class="menu-elem menu-elem-left menu-main"><a>Главная</a></div>
+                        <div class="menu-elem menu-elem-left menu-catalog"><a>Каталог</a></div>
+                        <div class="menu-elem menu-elem-left menu-contact"><a id="go" href="#">Контакты</a></div>
+                    </div>
+                    <div class="wrapp-logo">
+                        <div class="logo">
+                        </div>
+                    </div>
+                    <div class="wrapp-right-menu">
+                        <div class="menu-elem menu-elem-right menu-search">
+                            <div class="search-field">
+                                <input type="text" placeholder  ="Поиск...">
+                                <img src="{% static 'cookie/img/search.png' %}">
+                            </div>
+                        </div>
+                        <div class="menu-elem menu-elem-right menu-basket">
+                            <div class="count-basket"><p>5</p></div>
+                            <div class="basket-field">
+                                <img src="{% static 'cookie/img/basket.png' %}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-line menu-bot-line"></div>
+            </div>
+            <div class="wrapp-slide">
+                <div class="slider">
+                    <ul class="bxslider">
+                        {% for hit in hits %}
+                      <li>
+                          <div class="slide"><img src="{{ hit.photo_for_slider.url }}" />
+                          <div class="hit-week">
+                              <div class="row-hit-top-text">
+                              <div class="row-hit-this-month">
+                                  <div class="rushechka rushechka-left"><img src="{% static 'cookie/img/arrow.png' %}" /></div>
+                                  <div class="hit-this-month"><p>Хит этого месяца:</p></div>
+                                  <div class="rushechka rushechka-right"><img src="{% static 'cookie/img/arrow.png' %}" /></div>
+                              </div>
+                              </div>
+                              <div class="row-title-hit-month"><p>{{ hit.name }}</p></div>
+                              <div class="row-line-after-title-hit-month">
+                                  <div class="line-after-title-hit-month"></div>
+                              </div>
+                              <div class="row-descript-hit-month">
+                                  <div class="descript-hit-month">
+                                      <p>{{ hit.alter_descript }}</p>
+                                  </div>
+                              </div>
+                              <div class="row-button-hit-month">
+                                  <div class="button-hit-wrap">
+                                  <a class="button-hit-month" id="go" href="#">
+                                      <div class="button-hit-month"><p>Перейти к заказу</p></div>
+                                  </a>
+                                  </div>
+                              </div>
+                          </div>
+                          </div>
+                      </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+                <div class="space row-after-slider"></div>
+                <div class="divide-wrapp">
+                    <div class="divide">
+                        <div class="wrapp-figure">
+                            <div class="figure">
+                                <img src="{% static 'cookie/img/divide.png' %}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space row-after-divide"></div>
+                {% block content %}
+                {% endblock %}
+            <div class="footer">
+                <div class="footer-wrapp">
+                    <div class="footer-part footer-left-part">
+                    </div>
+                    <div class="footer-part footer-center-part"></div>
+                    <div class="footer-part footer-right-part"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div id="modal_form"><!-- Сaмo oкнo -->
+                                    <span id="modal_close">X</span> <!-- Кнoпкa зaкрыть -->
+                                 <!-- Тут любoе сoдержимoе -->
+                              </div>
+                              <div id="overlay"></div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- bxSlider Javascript file -->
+<script src="{% static 'cookie/js/jquery_slider/jquery.bxslider.js' %}"></script>
+<script>
+	$(document).ready(function(){
+		$('.bxslider').bxSlider({
+			mode: 'horizontal',
+            auto: true,
+			moveSlides: 1,
+			slideMargin: 0,
+			infiniteLoop: true,
+			slideWidth: 1200,
+			minSlides: 1,
+			maxSlides: 4,
+            pause: 7000,
+			speed: 800,
+		});
+	});
+</script>
+<script>
+$(document).ready(function() { // вся мaгия пoсле зaгрузки стрaницы
+	$('a#go').click( function(event){ // лoвим клик пo ссылки с id="go"
+		event.preventDefault(); // выключaем стaндaртную рoль элементa
+		$('#overlay').fadeIn(400, // снaчaлa плaвнo пoкaзывaем темную пoдлoжку
+		 	function(){ // пoсле выпoлнения предъидущей aнимaции
+				$('#modal_form')
+					.css('display', 'block') // убирaем у мoдaльнoгo oкнa display: none;
+					.animate({opacity: 1, top: '50%'}, 200); // плaвнo прибaвляем прoзрaчнoсть oднoвременнo сo съезжaнием вниз
+		});
+	});
+	/* Зaкрытие мoдaльнoгo oкнa, тут делaем тo же сaмoе нo в oбрaтнoм пoрядке */
+	$('#modal_close, #overlay').click( function(){ // лoвим клик пo крестику или пoдлoжке
+		$('#modal_form')
+			.animate({opacity: 0, top: '45%'}, 200,  // плaвнo меняем прoзрaчнoсть нa 0 и oднoвременнo двигaем oкнo вверх
+				function(){ // пoсле aнимaции
+					$(this).css('display', 'none'); // делaем ему display: none;
+					$('#overlay').fadeOut(400); // скрывaем пoдлoжку
+				}
+			);
+	});
+});
+</script>
+</html>

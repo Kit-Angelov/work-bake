@@ -1,0 +1,17 @@
+{% extends 'cookie/base.html' %}
+
+{% block content %}
+    <div class="body-wrapp search">
+        <form type="get" action=".">
+            <input type="text" name="q">
+            <button type="submit">Search</button>
+        </form>
+
+        {% for product in products %}
+            <h1>{{ product.name }}</h1>
+                <p>
+                {{ product.name }}
+                </p>
+        {% endfor %}
+    </div>
+{% endblock content %}

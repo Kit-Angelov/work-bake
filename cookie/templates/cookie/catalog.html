@@ -1,0 +1,45 @@
+{% extends 'cookie/base.html' %}
+
+{% block content %}
+    <div class="body-wrapp catalog">
+        <div class="catalog-wrapp">
+        <div class="left-menu"></div>
+        <div class="product-list">
+            <div class="row-our-production-in-catalog">
+                    <div class="row-title-in-catalog row-title-our-production-in-catalog">
+                        <div class="title-in-catalog title-our-production-in-catalog"></div>
+                    </div>
+                    <div class="space row-after-title-procucts-in-catalog"></div>
+                    {% for product in products %}
+                        <div class="product-wight product-in-catalog">
+                            <div class="product-wight product-pic-in-catalog"></div>
+                            <div class="product-wight product-descript-in-catalog">
+                                <div class="product-wight name-product-in-catalog"></div>
+                                <div class="product-wight text-product-in-catalog"></div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+        </div>
+        </div>
+        <div class="pagination-wrapp">
+                <div class="pagination">
+                    {% if products.has_previous %}
+                    <a href="?page={{ articles.previous_page_number }}">←</a>
+                    {% endif %}
+                {% for num in products.paginator.page_range %}
+                    {% if num == products.number %}
+                    <span class="current"><b>{{ num }}</b></span>
+                    {% else %}
+                    <a href="?page={{ num }}"> {{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if products.has_next %}
+                <a href="?page={{ article_list.next_page_number }}">Next</a>
+                {% endif %}
+                </div>
+        </div>
+    </div>
+<div class="space space-after-catalog"></div>
+{% endblock content %}

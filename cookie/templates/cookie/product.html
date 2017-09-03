@@ -1,0 +1,16 @@
+{% extends 'cookie/base.html' %}
+
+{% block content %}
+    <div class="body-wrapp product-detail">
+        <div class="product-detail-wrapp">
+            <div class="left-menu"></div>
+            <div class="product-detail-item">
+                <div class="row-title-in-catalog row-title-detail-item">
+                    <div class="title-in-catalog title-product-detail-in-catalog"></div>
+                </div>
+                <div class="space row-after-title-procucts-in-catalog"></div>
+                <p>{{ product.name }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
