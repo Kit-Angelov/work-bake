@@ -1,12 +1,17 @@
 @font-face {
-    font-family: regular;
-    src: url("/static/cookie/font/regular.ttf");
-}
-@font-face {
-    font-family: italic;
-    src: url("/static/cookie/font/italic.ttf");
+    font-family: garamond_regular;
+    src: url("/static/cookie/font/EBGaramond-Regular.ttf");
 }
 
+@font-face {
+    font-family: Lora_regular;
+    src: url("/static/cookie/font/Lora-Regular.ttf");
+}
+
+@font-face {
+    font-family: Lora_italic;
+    src: url("/static/cookie/font/Lora-Italic.ttf");
+}
 
 html{
     width: 100%;
@@ -29,8 +34,8 @@ a:hover{
 }
 
 p{
-    font-family: regular;
-    font-size: 16px;
+    font-family: garamond_regular;
+    font-size: 14pt;
 }
 
 .main-wrapp{
@@ -87,8 +92,8 @@ p{
 }
 
 .menu a{
-    font-family: regular;
-    font-size: 12pt;
+    font-family: garamond_regular;
+    font-size: 14pt;
 }
 
 .menu-line{
@@ -119,7 +124,7 @@ p{
 
 .menu-elem-left{
     float: left;
-    padding-top: 16px;
+    padding-top: 12px;
     margin-right: 95px;
 }
 
@@ -151,12 +156,16 @@ p{
     height: 26px;
     float: left;
     border-radius: 5px 5px 5px 5px;
-    padding-top: 2px;
     padding-left: 10px;
-    font-family: italic;
-    font-size: 12px;
+    font-family: Arial;
+    font-size: 9pt;
     background-color: transparent;
     outline-color: #476b22;
+}
+
+.menu-search input::placeholder{
+    font-family: Lora_italic;
+    font-size: 9pt;
 }
 
 .menu-search img {
@@ -190,9 +199,8 @@ p{
     margin-left: 10px;
 }
 .count-basket p{
-    font-family: regular;
-    font-size: 12px;
-    padding: 0;
+    font-family: Lora_regular;
+    font-size: 9pt;
     padding-top: 1px;
     padding-left: 1px;
     margin: 0;
@@ -331,7 +339,8 @@ p{
     padding: 0;
     margin: 0;
     color: white;
-    font-family: italic;
+    font-family: Lora_italic;
+    font-size: 11pt;
 }
 
 .row-title-hit-month{
@@ -343,8 +352,8 @@ p{
 .row-title-hit-month p{
     padding: 0;
     margin: 15px 0 0 0 ;
-    font-family: regular;
-    font-size: 30px;
+    font-family: garamond_regular;
+    font-size: 24pt;
     color: white;
 }
 
@@ -376,8 +385,8 @@ p{
 }
 
 .descript-hit-month p{
-    font-family: regular;
-    font-size: 17px;
+    font-family: garamond_regular;
+    font-size: 14pt;
     color: white;
 }
 
@@ -412,7 +421,7 @@ p{
 .button-hit-month p{
     padding-top: 9px;
     font-family: Arial;
-    font-size: 15px;
+    font-size: 11pt;
     color: white;
 }
 
@@ -529,8 +538,8 @@ p{
 
 .title-about-company p{
     margin: 0;
-    font-family: regular;
-    font-size: 25px;
+    font-family: garamond_regular;
+    font-size: 24pt;
 }
 
 .text-about-company{
@@ -543,8 +552,8 @@ p{
 
 .text-about-company p{
     margin: 0;
-    font-family: regular;
-    font-size: 16px;
+    font-family: garamond_regular;
+    font-size: 14pt;
 }
 
 .row-after-about-company{
@@ -601,7 +610,7 @@ p{
 }
 
 .advantages-title p{
-    font-size: 20px;
+    font-size: 18pt;
     margin-bottom: 0;
 }
 
@@ -646,7 +655,7 @@ p{
 }
 
 .title-our-production p{
-    font-size: 25px;
+    font-size: 24pt;
     margin: 0;
 }
 
@@ -721,7 +730,7 @@ p{
 
 .name-product p{
     margin: 0;
-    font-size: 20px;
+    font-size: 18pt;
     padding-top: 15px;
 
 }
@@ -757,8 +766,8 @@ p{
 
 .title-our-contacts p{
     margin: 0;
-    font-family: regular;
-    font-size: 25px;
+    font-family: garamond_regular;
+    font-size: 24pt;
 }
 
 .text-our-contacts{
@@ -771,8 +780,8 @@ p{
 
 .text-our-contacts p{
     margin: 0;
-    font-family: regular;
-    font-size: 16px;
+    font-family: garamond_regular;
+    font-size: 14pt;
 }
 
 .row-list-contacts{
@@ -822,6 +831,8 @@ p{
 .elem-contacts-text p{
     margin: 0;
     margin-left: 10px;
+    font-family: Lora_regular;
+    font-size: 12pt;
 }
 
 .elem-contacts-email p{
@@ -862,7 +873,7 @@ p{
 
 .footer-part p{
     font-family: Arial;
-    font-size: 13px;
+    font-size: 10pt;
     color: #574736;
 }
 
