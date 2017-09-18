@@ -3,19 +3,43 @@
 {% block content %}
     <div class="body-wrapp catalog">
         <div class="catalog-wrapp">
-        <div class="left-menu"></div>
+        <div class="left-menu">
+            {% for category in category_menu %}
+                <div class="category-menu-name">
+                    <div class="menu-marker"></div>
+                    <div class="menu-catalog-elem"><a><p>{{ category.name }}</p></a></div>
+                </div>
+            {% endfor %}
+        </div>
         <div class="product-list">
             <div class="row-our-production-in-catalog">
                     <div class="row-title-in-catalog row-title-our-production-in-catalog">
-                        <div class="title-in-catalog title-our-production-in-catalog"></div>
+                        <div class="title-in-catalog title-our-production-in-catalog">
+                            <p>{{ category_name.name}}</p>
+                        </div>
                     </div>
                     <div class="space row-after-title-procucts-in-catalog"></div>
                     {% for product in products %}
-                        <div class="product-wight product-in-catalog">
-                            <div class="product-wight product-pic-in-catalog"></div>
+                        <div class="product-in-catalog">
+                            <div class="product-elem-in-catalog product-pic-in-catalog">
+                                <img src="{{ product.photo_for_slider.url }}" />
+                            </div>
                             <div class="product-wight product-descript-in-catalog">
-                                <div class="product-wight name-product-in-catalog"></div>
-                                <div class="product-wight text-product-in-catalog"></div>
+                                <div class="product-elem-in-catalog name-product-in-catalog">
+                                    <p>
+                                        {{ product.name }}
+                                    </p>
+                                </div>
+                                <div class="product-elem-in-catalog price-product-in-catalog">
+                                    <p>
+                                        {{ product.price }} Р/кг
+                                    </p>
+                                </div>
+                                <div class="product-elem-in-catalog text-product-in-catalog">
+                                    <p>
+                                        {{ product.description }}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     {% endfor %}
@@ -25,18 +49,18 @@
         <div class="pagination-wrapp">
                 <div class="pagination">
                     {% if products.has_previous %}
-                    <a href="?page={{ articles.previous_page_number }}">←</a>
+                    <a href="?page={{ articles.previous_page_number }}">пред.</a>
                     {% endif %}
                 {% for num in products.paginator.page_range %}
                     {% if num == products.number %}
                     <span class="current"><b>{{ num }}</b></span>
                     {% else %}
-                    <a href="?page={{ num }}"> {{ num }}</a>
+                    <a href="?page={{ num }}">{{ num }}</a>
                     {% endif %}
                 {% endfor %}
 
                 {% if products.has_next %}
-                <a href="?page={{ article_list.next_page_number }}">Next</a>
+                <a href="?page={{ article_list.next_page_number }}">след.</a>
                 {% endif %}
                 </div>
         </div>

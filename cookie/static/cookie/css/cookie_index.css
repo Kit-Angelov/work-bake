@@ -4,6 +4,11 @@
 }
 
 @font-face {
+    font-family: garamond_bold;
+    src: url("/static/cookie/font/garamond-bold.ttf");
+}
+
+@font-face {
     font-family: Lora_regular;
     src: url("/static/cookie/font/Lora-Regular.ttf");
 }
@@ -13,9 +18,15 @@
     src: url("/static/cookie/font/Lora-Italic.ttf");
 }
 
+@font-face {
+    font-family: Lora_Bold;
+    src: url("/static/cookie/font/Lora-Bold.ttf");
+}
+
 html{
     width: 100%;
     margin: 0;
+    min-height: 100%;
 }
 
 body{
@@ -23,14 +34,22 @@ body{
     width: 100%;
     min-width: 1200px;
     height: auto;
+    min-height: 100%;
 }
 
 a:visited{
     color: black;
+    text-decoration: none;
 }
 
 a:hover{
     color: #A78C71;
+    text-decoration: none;
+}
+
+a{
+    color: black;
+    text-decoration: none;
 }
 
 p{
@@ -75,6 +94,7 @@ p{
     margin: auto;
     margin-top: 91px;
     background-color: white;
+    min-height: 100%;
     z-index: 2;
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.15);
 }
@@ -168,19 +188,33 @@ p{
     font-size: 9pt;
 }
 
+.menu-search button{
+    height: 30px;
+    width: 30px;
+    float: right;
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    outline: none;
+}
+
+.menu-search button:hover{
+    cursor:pointer;
+}
+
 .menu-search img {
     background-color: transparent;
-    padding-top: 7px;
-    padding-right: 10px;
     height: 15px;
     width: 15px;
+    margin-top: -1px;
+    margin-right: 10px;
     float: right;
 }
 
 .menu-basket{
+    float: right;
     padding-top: 16px;
     width: 20px;
-    float: right;
     height: 20px;
     margin-right: 32px;
 }
@@ -293,8 +327,8 @@ p{
 .hit-week{
     display: inline-block;
     width: 100%;
-    height: 190px;
-    margin-top: 100px;
+    height: 180px;
+    margin-top: 90px;
 }
 
 .row-hit-top-text{
@@ -351,9 +385,9 @@ p{
 
 .row-title-hit-month p{
     padding: 0;
-    margin: 15px 0 0 0 ;
+    margin: 5px 0 0 0 ;
     font-family: garamond_regular;
-    font-size: 24pt;
+    font-size: 26pt;
     color: white;
 }
 
@@ -374,12 +408,12 @@ p{
 
 .row-descript-hit-month{
     width: auto;
-    height: 40px;
+    height: 50px;
 }
 
 .descript-hit-month{
     width: 650px;
-    height: 40px;
+    height: 50px;
     margin: auto;
     text-align: center;
 }
@@ -388,6 +422,8 @@ p{
     font-family: garamond_regular;
     font-size: 14pt;
     color: white;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .row-button-hit-month{
@@ -900,12 +936,12 @@ p{
 /*Catalog*/
 
 .catalog{
-    height: 1040px;
+    height: 1009px;
 }
 
 .catalog-wrapp{
-    width: 100%;
-    height: auto;
+    width: 1125px;
+    height: 989px;
 }
 
 /*left menu*/
@@ -913,23 +949,55 @@ p{
 .left-menu{
     width: 198px;
     height: auto;
-    height:20px;
     float: left;
-    background-color: #79aec8;
 }
 
-/*product list*/
+.category-menu-name{
+    margin-top: 6px;
+    width: 198px;
+    height: 30px;
+}
+
+.menu-marker{
+    float: left;
+    width: 6px;
+    height: 6px;
+    background-color: #A78C71;
+/* Rotate */
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+/* Rotate Origin */
+    -webkit-transform-origin: 0 100%;
+    -moz-transform-origin: 0 100%;
+    -ms-transform-origin: 0 100%;
+    -o-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+    margin-top: 12px;
+    margin-left: -15px;
+}
+
+.menu-catalog-elem{
+    float: left;
+    width: 168px;
+}
+
+.menu-catalog-elem p {
+    margin: 0;
+}
+
+/*product list in catalog*/
 
 .product-list{
-    width: 882px;
+    width: 912px;
     float: left;
-    background-color: darkgoldenrod;
 }
 
 .row-our-production-in-catalog{
     width: 100%;
     height: auto;
-    background-color: #447e9b;
 }
 
 .row-title-our-production-in-catalog{
@@ -938,8 +1006,7 @@ p{
 
 .row-title-in-catalog{
     width: 100%;
-    height: 70px;
-    background-color: #79aec8;
+    height: 45px;
 }
 
 .title-our-production-in-catalog{
@@ -947,16 +1014,22 @@ p{
 }
 
 .title-in-catalog{
-    width: 300px;
-    height: 70px;
-    margin: 0;
-    background-color: aqua;
+    width: 100%;
+    height: 45px;
+    margin: auto;
+    background-color: transparent;
     float: left;
+    text-align: left;
+}
+
+.title-in-catalog p{
+    margin: 0;
+    font-family: garamond_regular;
+    font-size: 24pt;
 }
 
 .row-after-title-procucts-in-catalog{
-    height: 50px;
-    background-color: white;
+    height: 20px;
 }
 
 
@@ -966,96 +1039,191 @@ p{
 }
 
 
-.product-wight{
-    width: 294px;
+.product-in-catalog{
+    width: 304px;
+    height: 308px;
+    float: left;
+    text-align: left;
 }
 
-.product-in-catalog{
-    height: auto;
-    float: left;
+.product-elem-in-catalog{
+    width: 274px;
+}
+
+.product-elem-in-catalog p{
+    margin: 0;
+    font-family: garamond_regular;
 }
 
 .product-pic-in-catalog{
-    height: 190px;
-    background-color: #993333;
+    height: 158px;
+}
+
+.product-pic-in-catalog img{
+    width: 274px;
+    height: 158px;
 }
 
 .product-descript-in-catalog{
+    width: 274px;
     height: 100px;
-    background-color: coral;
 }
 
 .name-product-in-catalog{
-    height: 50px;
-    background-color: #ba2121;
+    height: 30px;
+}
+
+.name-product-in-catalog p{
+    font-size: 18pt;
+}
+
+.price-product-in-catalog{
+    height: 30px;
+}
+
+.price-product-in-catalog p{
+    padding-top: 5px;
+    font-family: Lora_regular;
+    font-size: 12pt;
 }
 
 .text-product-in-catalog{
     height: 50px;
-    background-color: deeppink;
 }
 
 .row-after-our-products-in-catalog{
     height: 50px;
-    background-color: white;
 }
 
 .space-after-catalog{
     width: 100%;
     height: 50px;
-    background-color: white;
 }
 
 /*пагинатор*/
 
 .pagination-wrapp{
-    width: 100%;
-    height: 50px;
-    background-color: #f5dd5d;
-    float: left;
+    width: 882px;
+    height: auto;
+    float: right;
 }
 
 .pagination{
     width: 200px;
-    height: 50px;
+    height: auto;
     margin: auto;
+    text-align: center;
 }
 
-/*search*/
-
-.search{
-    height: 200px;
+.pagination a{
+    font-family: Lora_regular;
+    font-size: 12pt;
+    margin-right: 10px;
 }
 
+.pagination a:hover{
+    text-decoration: underline;
+    color: black;
+}
+
+.pagination b{
+    font-family: Lora_regular;
+    font-size: 12pt;
+    margin-right: 10px;
+    color: #A78C71;;
+}
 
 /*popup*/
 
 #modal_form {
-	width: 300px;
-	height: 300px; /* Рaзмеры дoлжны быть фиксирoвaны */
-	border-radius: 5px;
-	border: 3px #000 solid;
+	width: 480px;
+	height: 260px; /* Рaзмеры дoлжны быть фиксирoвaны */
+	border-radius: 7px;
 	background: #fff;
 	position: fixed; /* чтoбы oкнo былo в видимoй зoне в любoм месте */
 	top: 45%; /* oтступaем сверху 45%, oстaльные 5% пoдвинет скрипт */
 	left: 50%; /* пoлoвинa экрaнa слевa */
-	margin-top: -150px;
-	margin-left: -150px; /* тут вся мaгия центрoвки css, oтступaем влевo и вверх минус пoлoвину ширины и высoты сooтветственнo =) */
+	margin-top: -140px;
+	margin-left: -240px;
 	display: none; /* в oбычнoм сoстoянии oкнa не дoлжнo быть */
 	opacity: 0; /* пoлнoстью прoзрaчнo для aнимирoвaния */
 	z-index: 50; /* oкнo дoлжнo быть нaибoлее бoльшем слoе */
-	padding: 20px 10px;
 }
+
+.modal_form_wrap{
+    width: 400px;
+    height: 180px;
+    margin-top: 40px;
+    margin-left: 40px;
+}
+
 /* Кнoпкa зaкрыть для тех ктo в тaнке) */
-#modal_form #modal_close {
-	width: 21px;
-	height: 21px;
-	position: absolute;
-	top: 10px;
-	right: 10px;
+#modal_close {
+	width: 8px;
+	height: 8px;
 	cursor: pointer;
-	display: block;
+    position: absolute;
+    top: 40px;
+    right: 40px;
 }
+
+#modal_close img{
+    position: absolute;
+    top: 3px;
+    right: -1px;
+}
+
+.modal-content{
+    width: 300px;
+    height: 180px;
+    float: left;
+    margin-top: -1px;
+}
+
+.modal-text{
+}
+
+.modal-text p{
+    margin: 0;
+    font-family: Lora_regular;
+    font-size: 12pt;
+}
+
+.button-modal-wrap{
+    float: left;
+    width: 215px;
+    height: 35px;
+}
+
+.button-modal {
+    width: 215px;
+    height: 35px;
+    border-radius: 20px;
+    background: linear-gradient(to bottom, #476B22, #3B591C);
+    text-align: center;
+}
+
+.button-modal:hover {
+    background: linear-gradient(to top, #476B22, #3B591C);
+}
+
+.button-modal a{
+    text-decoration: none;
+}
+
+.button-modal-text p{
+    margin: 0;
+    padding-top: 9px;
+    font-family: Arial;
+    font-size: 11pt;
+    color: white;
+}
+
+.modal-info-line{
+    margin-bottom: 25px;
+}
+
+
 /* Пoдлoжкa */
 #overlay {
 	z-index:30; /* пoдлoжкa дoлжнa быть выше слoев элементoв сaйтa, нo ниже слoя мoдaльнoгo oкнa */
@@ -1074,16 +1242,734 @@ p{
 
 /*Product-detail*/
 .product-detail{
-    height: 1040px;
+    height: 732px;
 }
 
 .product-detail-wrapp{
     width: 100%;
-    height: auto;
+    height: 732px;
 }
 
 .product-detail-item{
     width: 882px;
     float: left;
-    background-color: darkgoldenrod;
+    height: 732px;
+}
+
+.row-product-detail{
+    width: 100%;
+    height: auto;
+}
+
+.row-title-product-detail{
+
+}
+
+.title-product-detail {
+
+}
+
+.title-product-detail p{
+    font-family: garamond_regular;
+    font-size: 24pt;
+    margin: 0;
+}
+
+.row-after-title-procuct-detail{
+    width: 100%;
+    height: 20px;
+}
+
+.row-product-view{
+    width: 100%;
+    height: 355px;
+}
+
+.product-galery{
+    width: 500px;
+    height: 355px;
+    margin-right: 15px;
+    float: left;
+    background-color: #79aec8;
+}
+
+.product-main{
+    width: 367px;
+    height: 355px;
+    float: left;
+}
+
+.product-main-elem{
+    width: 100%;
+}
+
+.product-cat-name{
+    height: auto;
+}
+
+.product-cat-name p{
+    margin: 0;
+    font-family: Lora_italic;
+    font-size: 11pt;
+    color: #5b5b5b;
+}
+
+.product-price{
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.product-price b{
+    font-family: Lora_regular;
+    font-size: 12pt;
+}
+
+.product-title-descript{
+    height: auto;
+}
+
+.product-title-descript p{
+    font-family: Lora_italic;
+    font-size: 12pt;
+    margin: 0;
+    color: #5b5b5b;
+}
+
+.product-text-descript{
+    height: auto;
+    max-height: 170px;
+}
+
+.product-text-descript p{
+    font-family: garamond_regular;
+    font-size: 14pt;
+    margin: 0;
+}
+
+.row-input-button{
+    height: 35px;
+    width: 100%;
+    float: left;
+    margin-top: 20px;
+}
+
+.product-form-price{
+    height: 30px;
+    width: 90px;
+    margin-right: 30px;
+    float: left;
+}
+
+.product-form-price p{
+    font-family: Lora_regular;
+    font-size: 12pt;
+    float: left;
+    margin: 0;
+    margin-top: 7px;
+}
+
+.product-form-price input{
+    width: 60px;
+    height: 24px;
+    float: left;
+    border-radius: 5px;
+    margin-right: 9px;
+    margin-top: 4px;
+
+}
+
+.product-form-price input::-webkit-inner-spin-button{
+    opacity: 1;
+}
+
+.product-button-basket{
+    height: 35px;
+    width: 160px;
+    float: left;
+}
+
+.button-product-wrap{
+    width: 100%;
+    height: 35px;
+}
+
+.button-product {
+    width: 160px;
+    height: 35px;
+    border-radius: 20px;
+    background: linear-gradient(to bottom, #476B22, #3B591C);
+    text-decoration: none;
+    text-align: center;
+}
+
+.button-product:hover {
+    background: linear-gradient(to top, #476B22, #3B591C);
+}
+
+
+.button-product p{
+    padding-top: 9px;
+    font-family: Arial;
+    font-size: 11pt;
+    color: white;
+    margin: 0;
+}
+
+.product-link-back{
+    width: 100%;
+    float: left;
+    height: auto;
+    margin-top: 20px;
+}
+
+.product-link-back p{
+    font-family: Lora_italic;
+    font-size: 11pt;
+    margin: 0;
+    color: #5b5b5b;
+}
+
+/* search */
+
+.search{
+    height: 945px;
+}
+
+.row-search-result{
+    width: 100%;
+    height: auto;
+    background-color: transparent;
+}
+
+.title-search-result{
+    width: 1080px;
+    height: 45px;
+    margin: auto;
+    background-color: transparent;
+    text-align: center;
+}
+
+.title-search-result p{
+    margin: 0;
+    font-family: garamond_regular;
+    font-size: 24pt;
+}
+
+.list-search-result{
+    width: 1100px;
+    height: 860px;
+    margin-top: 20px;
+}
+
+.item-search-result{
+    width: 275px;
+    height: 270px;
+    float: left;
+}
+
+.item-search{
+    width: 255px;
+}
+
+.item-search-img{
+    height: 150px;
+
+}
+
+.item-search-img img{
+    height: 150px;
+    width: 255px;
+}
+
+.item-search-name{
+    margin-top: 8px;
+
+}
+
+.item-search-name p{
+    font-family: garamond_bold;
+    font-size: 16pt;
+    height: auto;
+    margin: 0;
+    line-height: 18px;
+}
+
+.item-search-price{
+}
+
+.item-search-price p{
+    font-family: Lora_regular;
+    font-size: 12pt;
+    height: auto;
+    margin: 0;
+    margin-top: 3px;
+}
+
+.item-search-descript{
+}
+
+.item-search-descript p{
+    font-family: garamond_regular;
+    font-size: 14pt;
+    margin: 0;
+    line-height: 20px;
+}
+
+.pagination-search-result{
+    width: 100%;
+}
+
+/* basket */
+
+.basket{
+    height: 720px;
+}
+
+.row-basket{
+    width: 100%;
+    height: auto;
+    background-color: transparent;
+}
+
+.title-basket{
+    width: 1080px;
+    height: 45px;
+    margin: auto;
+    background-color: transparent;
+    text-align: center;
+}
+
+.title-basket p{
+    margin: 0;
+    font-family: garamond_regular;
+    font-size: 24pt;
+}
+
+.list-basket{
+    width: 1100px;
+    height: auto;
+    margin-top: 20px;
+}
+
+.item-basket-wrap{
+    width: 275px;
+    height: 290px;
+    float: left;
+}
+
+.item-basket{
+    width: 255px;
+}
+
+.item-search-img{
+    height: 150px;
+
+}
+
+.item-basket-img img{
+    height: 150px;
+    width: 255px;
+}
+
+.item-basket-name{
+    margin-top: 8px;
+
+}
+
+.item-basket-name p{
+    font-family: garamond_bold;
+    font-size: 16pt;
+    height: auto;
+    margin: 0;
+    line-height: 18px;
+}
+
+.item-basket-weight{
+}
+
+.item-basket-weight p{
+    font-family: Lora_italic;
+    font-size: 11pt;
+    height: auto;
+    margin: 0;
+    margin-top: 3px;
+}
+
+.item-basket-sum{
+
+}
+
+.item-basket-sum p{
+    font-family: Lora_Bold;
+    font-size: 16px;
+    margin: 5px 0 5px 0 !important;
+}
+
+.item-basket-сheckbox{
+}
+
+.item-basket-сheckbox p{
+    font-family: garamond_regular;
+    width: 200px !important;
+    font-size: 13pt;
+    margin: 0 !important;
+    text-align: left;
+    float: left;
+}
+
+.item-basket-сheckbox input{
+    width: 13px;
+    height: 13px;
+    margin: 0;
+    float: left;
+    margin-top: 7px;
+    margin-right: 10px;
+    border: 0;
+}
+
+
+.pagination-basket-result{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.row-for-button{
+    width: 100%;
+    height: 35px;
+    display: inline-block;
+}
+
+.button-basket-wrap{
+    margin: auto;
+    width: 170px;
+    height: 35px;
+    margin-top: -15px;
+}
+
+.button-basket{
+    margin: auto;
+    width: 170px;
+    height: 35px;
+    border-radius: 20px;
+    background: linear-gradient(to bottom, #476B22, #3B591C);
+    text-decoration: none;
+    text-align: center;
+}
+
+.button-basket:hover {
+    background: linear-gradient(to top, #476B22, #3B591C);
+}
+
+.button-basket a{
+}
+
+.button-basket p{
+    padding-top: 9px;
+    font-family: Arial;
+    font-size: 11pt;
+    color: white;
+}
+
+/*popup order*/
+
+#modal_form-order {
+	width: 420px;
+	height: 320px; /* Рaзмеры дoлжны быть фиксирoвaны */
+	border-radius: 7px;
+	background: #fff;
+	position: fixed; /* чтoбы oкнo былo в видимoй зoне в любoм месте */
+	top: 45%; /* oтступaем сверху 45%, oстaльные 5% пoдвинет скрипт */
+	left: 50%; /* пoлoвинa экрaнa слевa */
+	margin-top: -160px;
+	margin-left: -210px;
+	display: none; /* в oбычнoм сoстoянии oкнa не дoлжнo быть */
+	opacity: 0; /* пoлнoстью прoзрaчнo для aнимирoвaния */
+	z-index: 50; /* oкнo дoлжнo быть нaибoлее бoльшем слoе */
+}
+
+.modal_form_order_wrap{
+    width: 380px;
+    height: 240px;
+    margin-top: 40px;
+    margin-left: 40px;
+}
+
+/* Кнoпкa зaкрыть для тех ктo в тaнке) */
+#modal_order_close {
+	width: 8px;
+	height: 8px;
+	cursor: pointer;
+    position: absolute;
+    top: 40px;
+    right: 40px;
+}
+
+#modal_order_close img{
+    position: absolute;
+    top: 3px;
+    right: -1px;
+}
+
+.modal-order-content{
+    width: 340px;
+    height: 240px;
+    float: left;
+    margin-top: -1px;
+}
+
+.modal-order-text{
+}
+
+.modal-order-text p{
+    margin: 0;
+    font-family: Lora_regular;
+    font-size: 12pt;
+}
+
+.button-modal-order-wrap{
+    float: left;
+    width: 215px;
+    height: 35px;
+}
+
+.button-order-modal {
+    width: 215px;
+    height: 35px;
+    border-radius: 20px;
+    background: linear-gradient(to bottom, #476B22, #3B591C);
+    text-align: center;
+}
+
+.button-order-modal:hover {
+    background: linear-gradient(to top, #476B22, #3B591C);
+}
+
+.button-order-modal a{
+    text-decoration: none;
+}
+
+.button-order-modal-text p {
+    margin: 0;
+    padding-top: 9px;
+    font-family: Arial;
+    font-size: 11pt;
+    color: white;
+}
+
+.modal-order-info-line{
+    margin-bottom: 20px;
+}
+
+.modal-order-info-line p{
+    font-family: garamond_regular;
+    font-size: 16pt;
+    margin: 0;
+}
+
+.modal-order-form-elem p{
+    font-family: garamond_regular;
+    font-size: 13pt;
+    margin: 0;
+}
+
+.first-modal-order-form-elem{
+    width: 340px;
+}
+
+
+.second-modal-order-form-elem{
+    width: 160px;
+    float: left;
+    margin-bottom: 10px;
+    margin-right: 20px;
+}
+
+.third-modal-order-form-elem{
+    width: 160px;
+    float: left;
+    margin-bottom: 10px;
+}
+
+.first-modal-order-form-elem textarea{
+    width: 335px;
+    height: 40px;
+    resize: none;
+    border-radius: 10px 10px 10px 10px;
+    border: 1px solid lightgray;
+    font-family: Arial;
+    font-size: 10pt;
+    background-color: transparent;
+    outline: none;
+}
+
+.first-modal-order-form-elem textarea:focus {
+    box-shadow: 0 0 2px 1px #476b22;
+}
+
+.modal-order-form-elem input{
+    width: 158px;
+    height: 30px;
+    border-radius: 10px 10px 10px 10px;
+    border: 1px solid lightgray;
+    box-shadow: none;
+    font-family: Arial;
+    font-size: 10pt;
+    background-color: transparent;
+    outline: none;
+}
+
+.modal-order-form-elem input:focus {
+    box-shadow: 0 0 2px 1px #476b22;
+}
+
+.button-order-modal-wrap{
+    margin-top: 18px;
+    display: inline-block;
+}
+
+.button-order-modal{
+    width: 160px;
+    height: 35px;
+}
+
+.button-order-modal-text p{
+    font-family: Arial;
+    font-size: 14pt;
+}
+
+/*popup order closed*/
+
+#modal_form-order-closed {
+	width: 460px;
+	height: 260px; /* Рaзмеры дoлжны быть фиксирoвaны */
+	border-radius: 7px;
+	background: #fff;
+	position: fixed; /* чтoбы oкнo былo в видимoй зoне в любoм месте */
+	top: 45%; /* oтступaем сверху 45%, oстaльные 5% пoдвинет скрипт */
+	left: 50%; /* пoлoвинa экрaнa слевa */
+	margin-top: -130px;
+	margin-left: -230px;
+	display: none; /* в oбычнoм сoстoянии oкнa не дoлжнo быть */
+	opacity: 0; /* пoлнoстью прoзрaчнo для aнимирoвaния */
+	z-index: 50; /* oкнo дoлжнo быть нaибoлее бoльшем слoе */
+}
+
+.modal_form_order_closed_wrap{
+    width: 380px;
+    height: 180px;
+    margin-top: 40px;
+    margin-left: 40px;
+}
+
+/* Кнoпкa зaкрыть для тех ктo в тaнке) */
+#modal-order-closed_close {
+	width: 8px;
+	height: 8px;
+	cursor: pointer;
+    position: absolute;
+    top: 40px;
+    right: 40px;
+}
+
+#modal-order-closed_close img{
+    position: absolute;
+    top: 3px;
+    right: -1px;
+}
+
+.modal-order-closed-content{
+    width: 380px;
+    height: 180px;
+    float: left;
+    margin-top: -1px;
+}
+
+.modal-order-closed-text{
+}
+
+.modal-order-closed-text p{
+    margin: 0;
+    font-family: Lora_regular;
+    font-size: 12pt;
+}
+
+.button-order-closed-modal-wrap{
+    float: left;
+    width: 380px;
+    height: 35px;
+}
+
+.button-order-closed-modal {
+    width: 215px;
+    height: 35px;
+    border-radius: 20px;
+    background: linear-gradient(to bottom, #476B22, #3B591C);
+    text-align: center;
+}
+
+.button-order-closed-modal:hover {
+    background: linear-gradient(to top, #476B22, #3B591C);
+}
+
+.button-order-closed-modal a{
+    text-decoration: none;
+}
+
+.button-order-closed-modal-text p {
+    margin: 0;
+    padding-top: 9px;
+    font-family: Arial;
+    font-size: 11pt;
+    color: white;
+}
+
+.modal-order-closed-info-line{
+    margin-bottom: 20px;
+}
+
+.modal-order-closed-info-line p{
+    font-family: garamond_regular;
+    font-size: 16pt;
+    margin: 0;
+}
+
+.modal-order-closed-form-elem p{
+    font-family: garamond_regular;
+    font-size: 13pt;
+    margin: 0;
+}
+
+.modal-order-closed-first-text{
+
+}
+
+.modal-order-closed-first-text p{
+
+}
+
+.modal-order-closed-second-text{
+    width: 95%;
+}
+
+.modal-order-closed-second-text p{
+    font-family: garamond_regular;
+    font-size: 14pt;
+}
+
+.button-order-closed-modal-wrap{
+    margin-top: 2px;
+    display: inline-block;
+}
+
+.button-order-closed-modal{
+    width: 140px;
+    height: 35px;
+    margin: auto;
+}
+
+.button-order-closed-modal p{
+    padding-top: 7px;
+    font-family: Arial;
+    font-size: 13pt;
 }

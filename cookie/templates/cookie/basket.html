@@ -1,7 +1,184 @@
 {% extends 'cookie/base.html' %}
 
+{% load staticfiles %}
+{% load cookie_extras %}
+
 {% block content %}
     <div class="body-wrapp basket">
-        
+        <div class="row-basket">
+            <div class="title-basket">
+                <p>Ваша корзина</p>
+            </div>
+            <div class="list-basket">
+                    {% for elem in order_elems %}
+                        <div class="item-basket-wrap">
+                            <div class="item-basket item-basket-img">
+                                <img src="{{ elem.product.photo_for_slider.url}}" />
+                            </div>
+                            <div class="item-basket item-basket-name">
+                                <p>
+                                    {{ elem.product.name }}
+                                </p>
+                            </div>
+                            <div class="item-basket item-basket-weight">
+                                <p>
+                                    {{ elem.weight|gramm }} граммов
+                                </p>
+                            </div>
+                            <div class="item-basket item-basket-sum">
+                                <p>
+                                    {{ elem.sum }} Р
+                                </p>
+                            </div>
+                            <div class="item-basket item-basket-сheckbox">
+                                {% if elem.include %}
+                                <input type="checkbox" name="option" value="include" checked>
+                                <p>Включить в текущий заказ</p>
+                                {% else %}
+                                <input type="checkbox" name="option" value="include" >
+                                <p>Включить в текущий заказ</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+            </div>
+            </div>
+            <div class="pagination-wrapp pagination-basket-result">
+                <div class="pagination">
+                    {% if order_elems.has_previous %}
+                    <a href="?page={{ order_elems.previous_page_number }}">пред.</a>
+                    {% endif %}
+                {% for num in order_elems.paginator.page_range %}
+                    {% if order_elems.has_next %}
+                        {% if num == order_elems.number %}
+                        <span class="current"><b>{{ num }}</b></span>
+                        {% else %}
+                        <a href="?page={{ num }}">{{ num }}</a>
+                        {% endif %}
+                    {% elif order_elems.has_previous %}
+                        {% if num == order_elems.number %}
+                        <span class="current"><b>{{ num }}</b></span>
+                        {% else %}
+                        <a href="?page={{ num }}">{{ num }}</a>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+
+                {% if order_elems.has_next %}
+                <a href="?page={{ order_elems.next_page_number }}">след.</a>
+                {% endif %}
+                </div>
+        </div>
+        <div class="row-for-button">
+            <div class="button-basket-wrap">
+            <a class="button-basket" id="order-closed" href="#">
+              <div class="button-basket"><p>Заказать</p></div>
+            </a>
+            </div>
+        </div>
+        <div class="space space-after-catalog"></div>
+        <div id="modal_form-order"><!-- Сaмo oкнo -->
+            <div class="modal_form_order_wrap">
+                <div id="modal_order_close"><img src="{% static 'cookie/img/cross.png' %}" />
+                </div> <!-- Кнoпкa зaкрыть -->
+                <div class="modal-order-content">
+                    <div class="modal-order-info-line modal-order-text modal-order-first-text">
+                        <p>Ваши данные</p>
+                    </div>
+                    <div class="modal-order-form">
+                        <div class="modal-order-form-elem first-modal-order-form-elem">
+                            <p>Адрес</p>
+                            <textarea type="text"  name="addres"></textarea>
+                        </div>
+                        <div class="modal-order-form-elem second-modal-order-form-elem">
+                            <p>Телефон</p>
+                            <input type="tel" name="phone">
+                        </div>
+                        <div class="modal-order-form-elem third-modal-order-form-elem">
+                            <p>Имя (не ФИО)</p>
+                            <input type="text" name="name">
+                        </div>
+                    </div>
+                    <div class ="button-order-modal-wrap">
+                        <div class="button-order-modal">
+                          <a id="" href="#">
+                              <div class="button-order-modal-text"><p>Подтвердить</p></div>
+                          </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="modal_form-order-closed"><!-- Сaмo oкнo -->
+        <div class="modal_form_order_closed_wrap">
+            <div id="modal-order-closed_close"><img src="{% static 'cookie/img/cross.png' %}" />
+            </div> <!-- Кнoпкa зaкрыть -->
+            <div class="modal-order-closed-content">
+                <div class="modal-order-closed-info-line modal-order-closed-text modal-order-closed-first-text">
+                    <p>Спасибо за ваш заказ!</p>
+                </div>
+                <div class="modal-order-closed-info-line modal-order-closed-text modal-order-closed-second-text">
+                    <p>Наш менеджер свяжется с вами в ближайшее время для подтверждения информации и обсуждения
+                        подробностей заказа
+                    </p>
+                </div>
+                <div class ="modal-order-closed-info-line button-order-closed-modal-wrap">
+                    <div class="button-order-closed-modal">
+                      <a id="" href="#">
+                          <div class="button-order-closed-modal-text"><p>ОК</p></div>
+                      </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div id="overlay"></div>
     </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+$(document).ready(function() { // вся мaгия пoсле зaгрузки стрaницы
+	$('a#order').click( function(event){ // лoвим клик пo ссылки с id="go"
+		event.preventDefault(); // выключaем стaндaртную рoль элементa
+		$('#overlay').fadeIn(400, // снaчaлa плaвнo пoкaзывaем темную пoдлoжку
+		 	function(){ // пoсле выпoлнения предъидущей aнимaции
+				$('#modal_form-order')
+					.css('display', 'block') // убирaем у мoдaльнoгo oкнa display: none;
+					.animate({opacity: 1, top: '50%'}, 200); // плaвнo прибaвляем прoзрaчнoсть oднoвременнo сo съезжaнием вниз
+		});
+	});
+	/* Зaкрытие мoдaльнoгo oкнa, тут делaем тo же сaмoе нo в oбрaтнoм пoрядке */
+	$('#modal_order_close, #overlay').click( function(){ // лoвим клик пo крестику или пoдлoжке
+		$('#modal_form-order')
+			.animate({opacity: 0, top: '45%'}, 200,  // плaвнo меняем прoзрaчнoсть нa 0 и oднoвременнo двигaем oкнo вверх
+				function(){ // пoсле aнимaции
+					$(this).css('display', 'none'); // делaем ему display: none;
+					$('#overlay').fadeOut(400); // скрывaем пoдлoжку
+				}
+			);
+	});
+});
+</script>
+<script>
+$(document).ready(function() { // вся мaгия пoсле зaгрузки стрaницы
+	$('a#order-closed').click( function(event){ // лoвим клик пo ссылки с id="go"
+		event.preventDefault(); // выключaем стaндaртную рoль элементa
+		$('#overlay').fadeIn(400, // снaчaлa плaвнo пoкaзывaем темную пoдлoжку
+		 	function(){ // пoсле выпoлнения предъидущей aнимaции
+				$('#modal_form-order-closed')
+					.css('display', 'block') // убирaем у мoдaльнoгo oкнa display: none;
+					.animate({opacity: 1, top: '50%'}, 200); // плaвнo прибaвляем прoзрaчнoсть oднoвременнo сo съезжaнием вниз
+		});
+	});
+	/* Зaкрытие мoдaльнoгo oкнa, тут делaем тo же сaмoе нo в oбрaтнoм пoрядке */
+	$('#modal-order-closed_close, #overlay').click( function(){ // лoвим клик пo крестику или пoдлoжке
+		$('#modal_form-order-closed')
+			.animate({opacity: 0, top: '45%'}, 200,  // плaвнo меняем прoзрaчнoсть нa 0 и oднoвременнo двигaем oкнo вверх
+				function(){ // пoсле aнимaции
+					$(this).css('display', 'none'); // делaем ему display: none;
+					$('#overlay').fadeOut(400); // скрывaем пoдлoжку
+				}
+			);
+	});
+});
+</script>
 {% endblock content %}

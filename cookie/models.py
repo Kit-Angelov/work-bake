@@ -1,5 +1,4 @@
 from django.db import models
-import json
 from django.utils import timezone
 
 
@@ -35,25 +34,26 @@ class Order(models.Model):
     name = models.CharField(max_length=100, null=True)
     phone = models.CharField(max_length=15, null=True)
     address = models.CharField(max_length=250, null=True)
-    product_list = models.TextField(null=True)
     sum = models.FloatField(null=True)
     date_upload = models.DateTimeField(default=timezone.now())
-
-    def set_product_list(self, x, y):
-        order_dict = {}
-        try:
-            order_dict = json.loads(self.product_list)
-            order_dict[x] = y
-        except:
-            order_dict = {x: y}
-        finally:
-            self.product_list = json.dumps(order_dict)
-
-    def get_product_list(self):
-        return json.loads(self.product_list)
+    closed = models.BooleanField(default=False)
 
     def __str__(self):
-        return '{0}, {1}, {2}'.format(self.name, self.product_list, self.sum)
+        return '{0}, {1}'.format(self.name, self.sum)
+
+
+class OrderElem(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True)
+    weight = models.FloatField(null=True)
+    sum = models.FloatField(null=True)
+    include = models.BooleanField(default=True)
+
+    def calc_sum(self):
+        self.sum = self.weight * self.product.price
+
+    def add_total_sum(self):
+        self.order.sum += self.order.sum + self.sum
 
 
 class PhotoProduct(models.Model):

@@ -31,8 +31,12 @@
                     <div class="wrapp-right-menu">
                         <div class="menu-elem menu-elem-right menu-search">
                             <div class="search-field">
-                                <input type="text" placeholder  ="Поиск...">
-                                <img src="{% static 'cookie/img/search.png' %}">
+                                <form type="get" action="/search/">
+                                    <input type="text" placeholder  ="Поиск..." name="q">
+                                    <button type="submit">
+                                    <img src="{% static 'cookie/img/search.png' %}">
+                                    </button>
+                                </form>
                             </div>
                         </div>
                         <div class="menu-elem menu-elem-right menu-basket">
@@ -71,7 +75,7 @@
                               <div class="row-button-hit-month">
                                   <div class="button-hit-wrap">
                                   <a class="button-hit-month" id="go" href="#">
-                                      <div class="button-hit-month"><p>Перейти к заказу</p></div>
+                                      <div class="button-hit-month"><p>Перейти к товару</p></div>
                                   </a>
                                   </div>
                               </div>
@@ -119,11 +123,32 @@
             </div>
         </div>
     </div>
-<div id="modal_form"><!-- Сaмo oкнo -->
-                                    <span id="modal_close">X</span> <!-- Кнoпкa зaкрыть -->
-                                 <!-- Тут любoе сoдержимoе -->
-                              </div>
-                              <div id="overlay"></div>
+    <div id="modal_form"><!-- Сaмo oкнo -->
+        <div class="modal_form_wrap">
+            <div id="modal_close"><img src="{% static 'cookie/img/cross.png' %}" />
+            </div> <!-- Кнoпкa зaкрыть -->
+            <div class="modal-content">
+                <div class="modal-info-line modal-text modal-first-text">
+                    <p>Кондитерский дома Исаева <br/>
+                    ИП "Исаева О.В."</p>
+                </div>
+                <div class="modal-info-line modal-text modal-second-text">
+                    <p>г. Воронеж, ул.Карпинского, д.58<br/>
+                    (473) 211-03-92, (473) 272-90-93<br/>
+                    isaev-v@bk.ru
+                    </p>
+                </div>
+                <div class ="modal-info-line button-modal-wrap">
+                    <div class="button-modal">
+                      <a id="" href="#">
+                          <div class="button-modal-text"><p>Заказать звонок</p></div>
+                      </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="overlay"></div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- bxSlider Javascript file -->

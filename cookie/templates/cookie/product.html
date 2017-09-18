@@ -3,13 +3,50 @@
 {% block content %}
     <div class="body-wrapp product-detail">
         <div class="product-detail-wrapp">
-            <div class="left-menu"></div>
-            <div class="product-detail-item">
-                <div class="row-title-in-catalog row-title-detail-item">
-                    <div class="title-in-catalog title-product-detail-in-catalog"></div>
+            <div class="left-menu">
+            {% for category in category_menu %}
+                <div class="category-menu-name">
+                    <div class="menu-marker"></div>
+                    <div class="menu-catalog-elem"><a><p>{{ category.name }}</p></a></div>
                 </div>
-                <div class="space row-after-title-procucts-in-catalog"></div>
-                <p>{{ product.name }}</p>
+            {% endfor %}
+            </div>
+            <div class="product-detail-item">
+                <div class="row-product-detail">
+                    <div class="row-title-product-detail row-title-detail-item">
+                        <div class="title-product-detail title-product-detail">
+                            <p>{{ product.name }}</p>
+                        </div>
+                    </div>
+                    <div class="space row-after-title-procuct-detail"></div>
+                    <div class="row-product-view">
+                        <div class="product-galery"></div>
+                        <div class="product-main">
+                            <div class="product-main-elem product-cat-name"><p>Категория: {{ product.category.name }}</p></div>
+                            <div class="product-main-elem product-price"><b>{{ product.price }} Р/кг</b></div>
+                            <div class="product-main-elem product-title-descript"><p>Описание:</p></div>
+                            <div class="product-main-elem product-text-descript"><p>{{ product.description }}</p></div>
+                            <div class="row-input-button">
+                                <div class="product-main-elem product-form-price">
+                                    <input type="number" name="quantity" min="1" max="5">
+                                    <p>кг</p>
+                                </div>
+                                <div class="product-main-elem product-button-basket">
+                                    <div class="button-product-wrap">
+                                      <a class="button-product" id="go" href="#">
+                                          <div class="button-product"><p>В корзину</p></div>
+                                      </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-main-elem product-link-back">
+                                <p>
+                                    &#8592 Назад к каталогу
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

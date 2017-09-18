@@ -2,16 +2,61 @@
 
 {% block content %}
     <div class="body-wrapp search">
-        <form type="get" action=".">
-            <input type="text" name="q">
-            <button type="submit">Search</button>
-        </form>
+        <div class="row-search-result">
+            <div class="title-search-result">
+                <p>Товары по запросу &#8220; &#8221;</p>
+            </div>
+            <div class="list-search-result">
+                    {% for product in products %}
+                        <div class="item-search-result">
+                            <div class="item-search item-search-img">
+                                <img src="{{ product.object.photo_for_slider.url}}" />
+                            </div>
+                            <div class="item-search item-search-name">
+                                <p>
+                                    {{ product.name }}
+                                </p>
+                            </div>
+                            <div class="item-search item-search-price">
+                                <p>
+                                    {{ product.price }} Р/кг
+                                </p>
+                            </div>
+                            <div class="item-search item-search-descript">
+                                <p>
+                                    {{ product.description }}
+                                </p>
+                            </div>
+                        </div>
+                    {% endfor %}
+            </div>
+            </div>
+            <div class="pagination-wrapp pagination-search-result">
+                <div class="pagination">
+                    {% if products.has_previous %}
+                    <a href="?page={{ products.previous_page_number }}">пред.</a>
+                    {% endif %}
+                {% for num in products.paginator.page_range %}
+                    {% if products.has_next %}
+                        {% if num == products.number %}
+                        <span class="current"><b>{{ num }}</b></span>
+                        {% else %}
+                        <a href="?page={{ num }}">{{ num }}</a>
+                        {% endif %}
+                    {% elif products.has_previous %}
+                        {% if num == products.number %}
+                        <span class="current"><b>{{ num }}</b></span>
+                        {% else %}
+                        <a href="?page={{ num }}">{{ num }}</a>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
 
-        {% for product in products %}
-            <h1>{{ product.name }}</h1>
-                <p>
-                {{ product.name }}
-                </p>
-        {% endfor %}
+                {% if products.has_next %}
+                <a href="?page={{ products.next_page_number }}">след.</a>
+                {% endif %}
+                </div>
+        </div>
     </div>
+<div class="space space-after-catalog"></div>
 {% endblock content %}

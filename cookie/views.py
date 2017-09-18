@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, render_to_response, get_list_or_404
 from django.template import RequestContext
 from django.http import HttpResponse
-from .models import Product, Category, Order
+from .models import Product, Category, Order, OrderElem
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import uuid
 from .forms import ProductsSearchForm
@@ -22,6 +22,8 @@ def catalog(request, category_id):
         request.session['uuid'] = str(uuid.uuid4())
     else:
         print(request.session['uuid'])
+    category_name = get_object_or_404(Category, id=category_id)
+    category_menu = Category.objects.filter(display=True)
     product_list = Product.objects.filter(category=category_id)
     paginator = Paginator(product_list, 9)
     page = request.GET.get('page')
@@ -33,17 +35,23 @@ def catalog(request, category_id):
         products = paginator.page(paginator.num_pages)
     context = dict(
         products=products,
+        category_name=category_name,
+        category_menu=category_menu,
     )
     return render(request, 'cookie/catalog.html', context=context)
 
 
 def product_detail(request, product_id):
+    category_menu = Category.objects.filter(display=True)
     if request.session.get('uuid', None) is None:
         request.session['uuid'] = str(uuid.uuid4())
     else:
         print(request.session['uuid'])
     product = get_object_or_404(Product, id=product_id)
-    context = dict(product=product)
+    context = dict(
+        product=product,
+        category_menu=category_menu,
+    )
     return render(request, 'cookie/product.html', context=context)
 
 
@@ -52,7 +60,23 @@ def basket(request):
         request.session['uuid'] = str(uuid.uuid4())
     else:
         print(request.session['uuid'])
-    return render(request, 'cookie/basket.html')
+    order = create_order(request.session['uuid'])
+
+    print(order)
+    print(order.orderelem_set.all())
+    order_elems = order.orderelem_set.all()
+    paginator = Paginator(order_elems, 8)
+    page = request.GET.get('page')
+    try:
+        order_elems = paginator.page(page)
+    except PageNotAnInteger:
+        order_elems = paginator.page(1)
+    except EmptyPage:
+        order_elems = paginator.page(paginator.num_pages)
+    context = dict(
+        order_elems=order_elems
+    )
+    return render(request, 'cookie/basket.html', context=context)
 
 
 def search(request):
@@ -61,8 +85,16 @@ def search(request):
     else:
         print(request.session['uuid'])
     form = ProductsSearchForm(request.GET)
-    products = form.search()
-    return render_to_response('cookie/search.html', {'products': products})
+    product_list = form.search()
+    paginator = Paginator(product_list, 12)
+    page = request.GET.get('page')
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
+    return render(request, 'cookie/search.html', {'products': products})
 
 '''
 def add_to_basket(request, product_id):
@@ -81,3 +113,11 @@ def add_to_basket(request, product_id):
     param_order = [str(sum_product), str(weight_product)]
     order.set_product_list(product_id, param_order)
 '''
+
+
+def create_order(uuid):
+    try:
+        order = Order.objects.get(uuid=uuid)
+    except:
+        order = Order(uuid=uuid)
+    return order
