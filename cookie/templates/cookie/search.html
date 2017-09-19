@@ -1,13 +1,15 @@
 {% extends 'cookie/base.html' %}
 
+
 {% block content %}
-    <div class="body-wrapp search">
+    <div class="body-wrapp search" id="search">
         <div class="row-search-result">
             <div class="title-search-result">
-                <p>Товары по запросу &#8220; &#8221;</p>
+                <p>Товары по запросу &#8220;{{ text_query }}&#8221;</p>
             </div>
             <div class="list-search-result">
                     {% for product in products %}
+                    <a id="" href="{% url 'cookie:product' product.object.id %}#product">
                         <div class="item-search-result">
                             <div class="item-search item-search-img">
                                 <img src="{{ product.object.photo_for_slider.url}}" />
@@ -28,6 +30,7 @@
                                 </p>
                             </div>
                         </div>
+                    </a>
                     {% endfor %}
             </div>
             </div>
@@ -60,3 +63,4 @@
     </div>
 <div class="space space-after-catalog"></div>
 {% endblock content %}
+

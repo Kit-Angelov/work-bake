@@ -297,9 +297,6 @@ p{
     text-align: center;
 }
 
-.bx-viewport{
-    height: 400px !important;
-}
 
 .slide img{
     width: 1200px;
@@ -1098,6 +1095,7 @@ p{
 .space-after-catalog{
     width: 100%;
     height: 50px;
+    display: inline-block;
 }
 
 /*пагинатор*/
@@ -1286,11 +1284,10 @@ p{
 }
 
 .product-galery{
-    width: 500px;
+    width: 502px;
     height: 355px;
-    margin-right: 15px;
+    margin-right: 13px;
     float: left;
-    background-color: #79aec8;
 }
 
 .product-main{
@@ -1370,13 +1367,15 @@ p{
 }
 
 .product-form-price input{
-    width: 60px;
+    width: 50px;
     height: 24px;
     float: left;
     border-radius: 5px;
     margin-right: 9px;
     margin-top: 4px;
-
+    box-shadow: none;
+    outline-color: #476b22;
+    padding-left: 10px;
 }
 
 .product-form-price input::-webkit-inner-spin-button{
@@ -1428,6 +1427,13 @@ p{
     font-size: 11pt;
     margin: 0;
     color: #5b5b5b;
+}
+
+.inner-text-product p{
+    margin: 0;
+    font-family: garamond_regular;
+    font-size: 14pt;
+    margin-top: 5px;
 }
 
 /* search */
@@ -1523,7 +1529,7 @@ p{
 /* basket */
 
 .basket{
-    height: 720px;
+    height: 770px;
 }
 
 .row-basket{
@@ -1757,6 +1763,14 @@ p{
     color: white;
 }
 
+.button-callback-modal-text p {
+    margin: 0;
+    padding-top: 9px;
+    font-family: Arial;
+    font-size: 11pt;
+    color: white;
+}
+
 .modal-order-info-line{
     margin-bottom: 20px;
 }
@@ -1972,4 +1986,65 @@ p{
     padding-top: 7px;
     font-family: Arial;
     font-size: 13pt;
+}
+
+/*galery*/
+
+.galery{
+    width: 502px;
+    height: 280px;
+    margin: 0;
+}
+
+.photo-product{
+    width: 502px;
+    height: 280px;
+    display: inline-block;
+    position: relative;
+    box-shadow: inset 0 0 70px 50px rgba(0, 0, 0, 0.3) !important;
+    text-align: center;
+}
+
+.bx-wrapper{
+    height: 280px !important;
+}
+
+
+
+.photo-product img{
+    width: 502px;
+    height: 280px;
+    position: absolute;
+    vertical-align: middle;
+    z-index: -2;
+}
+
+#galery-pager {
+    margin-top: 10px;
+    text-align: left;
+    width: 512px !important;
+}
+#galery-pager a {margin-right: 6px !important;}
+#galery-pager a img {
+    height: 65px;
+    width: 118px;
+    transition: .4s ease-in-out;
+}
+#galery-pager a.active img {
+    width: 118px !important;
+}
+
+.bx-prev, .bx-next {
+  text-decoration: none;
+  position: absolute;
+  top: 50%;
+  margin-top: -40px;
+  background: white;
+  color: #666;
+  width: 30px;
+  height: 80px;
+  text-align: center;
+  transition: .4s linear;
+  z-index: 10;
+  cursor: pointer;
 }

@@ -62,6 +62,7 @@
                     <div class="space row-after-title-procucts"></div>
                     <div class="row-products-list">
                     {% for category in categories %}
+                        <a href="{% url 'cookie:catalog' category.id %}#catalog">
                     <div class="product-wrap">
                         <div class="product">
                             <div class="product-pic">
@@ -73,6 +74,7 @@
                             </div>
                         </div>
                     </div>
+                        </a>
                     {% endfor %}
                     </div>
                 </div>

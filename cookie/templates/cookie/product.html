@@ -1,13 +1,15 @@
 {% extends 'cookie/base.html' %}
 
+{% load staticfiles %}
+
 {% block content %}
-    <div class="body-wrapp product-detail">
+    <div class="body-wrapp product-detail" id="product">
         <div class="product-detail-wrapp">
             <div class="left-menu">
             {% for category in category_menu %}
                 <div class="category-menu-name">
                     <div class="menu-marker"></div>
-                    <div class="menu-catalog-elem"><a><p>{{ category.name }}</p></a></div>
+                    <div class="menu-catalog-elem"><a href="{% url 'cookie:catalog' category.id %}#catalog"><p>{{ category.name }}</p></a></div>
                 </div>
             {% endfor %}
             </div>
@@ -20,7 +22,21 @@
                     </div>
                     <div class="space row-after-title-procuct-detail"></div>
                     <div class="row-product-view">
-                        <div class="product-galery"></div>
+                        <div class="product-galery">
+                            <ul class="galery">
+                            {% for photo in photos %}
+                              <li>
+                                  <div class="photo-product"><img src="{{ photo.photo.url }}" />
+                                  </div>
+                              </li>
+                            {% endfor %}
+                            </ul>
+                            <div id="galery-pager">
+                                {% for photo in photos %}
+                                    <a data-slide-index="{{ forloop.counter0 }}" href=""><img src="{{ photo.photo.url }}" /></a>
+                                {% endfor %}
+                            </div>
+                        </div>
                         <div class="product-main">
                             <div class="product-main-elem product-cat-name"><p>Категория: {{ product.category.name }}</p></div>
                             <div class="product-main-elem product-price"><b>{{ product.price }} Р/кг</b></div>
@@ -28,21 +44,23 @@
                             <div class="product-main-elem product-text-descript"><p>{{ product.description }}</p></div>
                             <div class="row-input-button">
                                 <div class="product-main-elem product-form-price">
-                                    <input type="number" name="quantity" min="1" max="5">
+                                    <input id='weight-product' type="number" name="{{ product.id }}" min="0.1" max="10" step="0.1">
                                     <p>кг</p>
                                 </div>
                                 <div class="product-main-elem product-button-basket">
-                                    <div class="button-product-wrap">
-                                      <a class="button-product" id="go" href="#">
+                                    <div class="button-product-wrap" id="button-wrapp">
+                                      <a class="button-product" id="button-basket" href="#product">
                                           <div class="button-product"><p>В корзину</p></div>
                                       </a>
                                     </div>
                                 </div>
                             </div>
                             <div class="product-main-elem product-link-back">
+                                <a id="" href="{% url 'cookie:catalog' product.category.id %}#catalog">
                                 <p>
                                     &#8592 Назад к каталогу
                                 </p>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -50,4 +68,41 @@
             </div>
         </div>
     </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- bxSlider Javascript file -->
+<script src="{% static 'cookie/js/jquery_slider/jquery.bxslider.js' %}"></script>
+<script>
+	$(document).ready(function(){
+		$('.galery').bxSlider({
+			nextText: '',
+            prevText: '',
+            pagerCustom: '#galery-pager'
+		});
+	});
+</script>
+<script>
+    function func(){
+    document.getElementById('button-wrapp').innerHTML = '<div class="inner-text-product"><p>Добавлено в корзину</p></div>';
+    }
+    $(document).ready(function () {
+    $('#button-basket').click(changeView);
+    function changeView() {
+        $.ajax({
+            type: "GET",
+            url: "/cookie/add_to_basket",
+            data:{
+                weight : $('#weight-product').val() ,
+                product_id: "{{ product.id }}",
+            },
+            dataType: "html",
+            cache: false,
+            success: function(data){
+                if (data == 'ok'){
+                    func()
+                }
+            }
+       });
+    }
+});
+</script>
 {% endblock content %}

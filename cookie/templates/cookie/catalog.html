@@ -1,13 +1,13 @@
 {% extends 'cookie/base.html' %}
 
 {% block content %}
-    <div class="body-wrapp catalog">
+    <div class="body-wrapp catalog" id="catalog">
         <div class="catalog-wrapp">
         <div class="left-menu">
             {% for category in category_menu %}
                 <div class="category-menu-name">
                     <div class="menu-marker"></div>
-                    <div class="menu-catalog-elem"><a><p>{{ category.name }}</p></a></div>
+                    <div class="menu-catalog-elem"><a href="{% url 'cookie:catalog' category.id %}#catalog"><p>{{ category.name }}</p></a></div>
                 </div>
             {% endfor %}
         </div>
@@ -20,6 +20,7 @@
                     </div>
                     <div class="space row-after-title-procucts-in-catalog"></div>
                     {% for product in products %}
+                    <a id="" href="{% url 'cookie:product' product.id %}#product">
                         <div class="product-in-catalog">
                             <div class="product-elem-in-catalog product-pic-in-catalog">
                                 <img src="{{ product.photo_for_slider.url }}" />
@@ -42,6 +43,7 @@
                                 </div>
                             </div>
                         </div>
+                    </a>
                     {% endfor %}
                 </div>
         </div>

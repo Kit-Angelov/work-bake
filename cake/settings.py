@@ -66,6 +66,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'cookie.context_processors.slider._hits',
+                'cookie.context_processors.counter._counts',
             ],
         },
     },
