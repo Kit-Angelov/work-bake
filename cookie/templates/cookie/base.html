@@ -40,11 +40,13 @@
                             </div>
                         </div>
                         <div class="menu-elem menu-elem-right menu-basket">
-                            <a href="{% url 'cookie:basket' %}#basket"><div class="count-basket"><p>{{ count }}</p></div>
+                            {% block count %}
+                            <a href="{% url 'cookie:basket' %}#basket"><div id="count-basket" class="count-basket"><p>{{ count }}</p></div>
                             <div class="basket-field">
                                 <img src="{% static 'cookie/img/basket.png' %}">
                             </div>
                             </a>
+                            {% endblock %}
                         </div>
                     </div>
                 </div>
@@ -199,6 +201,7 @@
 			maxSlides: 4,
             pause: 7000,
 			speed: 800,
+            touchEnabled: false,
 		});
 	});
 </script>

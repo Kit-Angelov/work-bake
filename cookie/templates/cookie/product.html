@@ -2,6 +2,14 @@
 
 {% load staticfiles %}
 
+{% block count %}
+    <a href="{% url 'cookie:basket' %}#basket"><div class="count-basket"><p id="count-basket">{{ count }}</p></div>
+    <div class="basket-field">
+        <img src="{% static 'cookie/img/basket.png' %}">
+    </div>
+    </a>
+{% endblock %}
+
 {% block content %}
     <div class="body-wrapp product-detail" id="product">
         <div class="product-detail-wrapp">
@@ -81,8 +89,9 @@
 	});
 </script>
 <script>
-    function func(){
-    document.getElementById('button-wrapp').innerHTML = '<div class="inner-text-product"><p>Добавлено в корзину</p></div>';
+    function func(data){
+        $('#count-basket').html(data);
+        document.getElementById('button-wrapp').innerHTML = '<div class="inner-text-product"><p>Добавлено в корзину</p></div>';
     }
     $(document).ready(function () {
     $('#button-basket').click(changeView);
@@ -97,9 +106,7 @@
             dataType: "html",
             cache: false,
             success: function(data){
-                if (data == 'ok'){
-                    func()
-                }
+                    func(data)
             }
        });
     }

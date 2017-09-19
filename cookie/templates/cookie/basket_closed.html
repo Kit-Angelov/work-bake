@@ -4,33 +4,33 @@
 {% load cookie_extras %}
 
 {% block content %}
-    <div class="body-wrapp basket" id="basket">
-        <div class="row-basket">
-            <div class="title-basket">
+    <div class="body-wrapp basket-closed" id="basket">
+        <div class="row-basket-closed">
+            <div class="title-basket-closed">
                 <p>Ваша корзина</p>
             </div>
-            <div class="list-basket">
+            <div class="list-basket-closed">
                     {% for elem in order_elems %}
-                        <div class="item-basket-wrap">
-                            <div class="item-basket item-basket-img">
+                        <div class="item-basket-closed-wrap">
+                            <div class="item-basket-closed item-basket-closed-img">
                                 <img src="{{ elem.product.photo_for_slider.url}}" />
                             </div>
-                            <div class="item-basket item-basket-name">
+                            <div class="item-basket-closed item-basket-closed-name">
                                 <p>
                                     {{ elem.product.name }}
                                 </p>
                             </div>
-                            <div class="item-basket item-basket-weight">
+                            <div class="item-basket-closed item-basket-closed-weight">
                                 <p>
                                     {{ elem.weight|gramm }} граммов
                                 </p>
                             </div>
-                            <div class="item-basket item-basket-sum">
+                            <div class="item-basket-closed item-basket-closed-sum">
                                 <p>
                                     {{ elem.sum }} Р
                                 </p>
                             </div>
-                            <a href="{% url 'cookie:delete_elem_basket' elem.id %}#basket">
+                            <a href="{% url 'cookie:delete_elem_basket_closed' elem.id %}#basket">
                             <div class="item-basket-closed item-basket-closed-delete">
                                 <p>
                                     Удалить из корзины
@@ -41,7 +41,7 @@
                     {% endfor %}
             </div>
             </div>
-            <div class="pagination-wrapp pagination-basket-result">
+            <div class="pagination-wrapp pagination-basket-closed-result">
                 <div class="pagination">
                     {% if order_elems.has_previous %}
                     <a href="?page={{ order_elems.previous_page_number }}">пред.</a>
@@ -66,15 +66,35 @@
                 <a href="?page={{ order_elems.next_page_number }}">след.</a>
                 {% endif %}
                 </div>
-        </div>
-        <div class="row-for-button">
-            <div class="button-basket-wrap">
-            <a class="button-basket" id="order" href="#">
-              <div class="button-basket"><p>Заказать</p></div>
-            </a>
+            </div>
+        <div class="space row-after-basket"></div>
+                <div class="divide-wrapp">
+                    <div class="divide divide-basket-closed">
+                        <div class="wrapp-figure">
+                            <div class="figure">
+                                <img src="{% static 'cookie/img/divide.png' %}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        <div class="space row-after-divide"></div>
+        <div class="basket-info">
+            <p class="info-title">Итого:</p>
+            <p class="info-text">{{ count_order_elem }} товара на сумму {{ sum }} Р</p>
+            <p class="info-title">Доставка по адресу:</p>
+            <p class="info-text">{{ address }}</p>
+            <p class="info-change">изменить</p>
+            <p class="info-title">Ваш телефон для связи:</p>
+            <p class="info-text">{{ phone }}</p>
+            <p class="info-change">изменить</p>
+            <div class="row-for-button-basket-closed">
+                <div class="button-basket-closed-wrap">
+                    <a class="button-basket-closed" id="order-closed" href="#">
+                      <div class="button-basket-closed"><p>Подтвердить и оформить</p></div>
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="space space-after-catalog"></div>
         <div id="modal_form-order"><!-- Сaмo oкнo -->
             <div class="modal_form_order_wrap">
                 <div id="modal_order_close"><img src="{% static 'cookie/img/cross.png' %}" />
@@ -83,35 +103,36 @@
                     <div class="modal-order-info-line modal-order-text modal-order-first-text">
                         <p>Ваши данные</p>
                     </div>
-                    <form action="{% url 'cookie:basket_closed' %}", method="post">
-                        {% csrf_token %}
                     <div class="modal-order-form">
                         <div class="modal-order-form-elem first-modal-order-form-elem">
                             <p>Адрес</p>
-                            <textarea required type="text"  name="address"></textarea>
+                            <textarea type="text"  name="addres"></textarea>
                         </div>
                         <div class="modal-order-form-elem second-modal-order-form-elem">
                             <p>Телефон</p>
-                            <input required type="tel" id="phone" name="phone">
+                            <input type="tel" name="phone">
                         </div>
                         <div class="modal-order-form-elem third-modal-order-form-elem">
                             <p>Имя (не ФИО)</p>
-                            <input required type="text" name="name">
+                            <input type="text" name="name">
                         </div>
                     </div>
-                    <div class ="button-order-modal-wrap">
-                        <button type="submit" class="button-order-modal button-order-modal-form">
-                              <div class="button-callback-modal-text"><p>Подтвердить</p></div>
-                        </button>
+                    <div class ="button-closed-order-modal-wrap">
+                        <div class="button-closed-order-modal">
+                          <a id="" href="#">
+                              <div class="button-closed-order-modal-text"><p>Подтвердить</p></div>
+                          </a>
+                        </div>
                     </div>
-                    </form>
                 </div>
             </div>
         </div>
         <div id="modal_form-order-closed"><!-- Сaмo oкнo -->
         <div class="modal_form_order_closed_wrap">
+            <a href="{% url 'cookie:closed_order' %}">
             <div id="modal-order-closed_close"><img src="{% static 'cookie/img/cross.png' %}" />
             </div> <!-- Кнoпкa зaкрыть -->
+            </a>
             <div class="modal-order-closed-content">
                 <div class="modal-order-closed-info-line modal-order-closed-text modal-order-closed-first-text">
                     <p>Спасибо за ваш заказ!</p>
@@ -123,7 +144,7 @@
                 </div>
                 <div class ="modal-order-closed-info-line button-order-closed-modal-wrap">
                     <div class="button-order-closed-modal">
-                      <a id="" href="#">
+                      <a href="{% url 'cookie:closed_order' %}">
                           <div class="button-order-closed-modal-text"><p>ОК</p></div>
                       </a>
                     </div>
@@ -131,10 +152,11 @@
             </div>
         </div>
         </div>
+        <a href="{% url 'cookie:closed_order' %}">
         <div id="overlay"></div>
+        </a>
     </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="{% static 'cookie/js/mask.js' %}"></script>
 <script>
 $(document).ready(function() { // вся мaгия пoсле зaгрузки стрaницы
 	$('a#order').click( function(event){ // лoвим клик пo ссылки с id="go"
@@ -169,21 +191,7 @@ $(document).ready(function() { // вся мaгия пoсле зaгрузки с�
 					.animate({opacity: 1, top: '50%'}, 200); // плaвнo прибaвляем прoзрaчнoсть oднoвременнo сo съезжaнием вниз
 		});
 	});
-	/* Зaкрытие мoдaльнoгo oкнa, тут делaем тo же сaмoе нo в oбрaтнoм пoрядке */
-	$('#modal-order-closed_close, #overlay').click( function(){ // лoвим клик пo крестику или пoдлoжке
-		$('#modal_form-order-closed')
-			.animate({opacity: 0, top: '45%'}, 200,  // плaвнo меняем прoзрaчнoсть нa 0 и oднoвременнo двигaем oкнo вверх
-				function(){ // пoсле aнимaции
-					$(this).css('display', 'none'); // делaем ему display: none;
-					$('#overlay').fadeOut(400); // скрывaем пoдлoжку
-				}
-			);
-	});
-});
-</script>
-<script type="text/javascript">
-jQuery(function($){
-   $("#phone").mask("+7(999) 999-9999");
+
 });
 </script>
 {% endblock content %}

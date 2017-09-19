@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils import timezone
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 
 
 class Category(models.Model):
@@ -31,10 +33,10 @@ class Product(models.Model):
 
 class Order(models.Model):
     uuid = models.CharField(max_length=36)
-    name = models.CharField(max_length=100, null=True)
-    phone = models.CharField(max_length=15, null=True)
-    address = models.CharField(max_length=250, null=True)
-    sum = models.FloatField(null=True)
+    name = models.CharField(max_length=100, null=True, blank=True)
+    phone = models.CharField(max_length=15, null=True, blank=True)
+    address = models.CharField(max_length=250, null=True, blank=True)
+    sum = models.FloatField(null=True, blank=True)
     date_upload = models.DateTimeField(default=timezone.now())
     closed = models.BooleanField(default=False)
 
@@ -46,11 +48,12 @@ class OrderElem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
     order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True)
     weight = models.FloatField(null=True)
-    sum = models.FloatField(null=True)
+    sum = models.FloatField(default=0)
     include = models.BooleanField(default=True)
 
-    def calc_sum(self):
-        self.sum = self.weight * self.product.price
+    @property
+    def sum(self):
+        return self.weight * self.product.price
 
     def add_total_sum(self):
         self.order.sum += self.order.sum + self.sum
