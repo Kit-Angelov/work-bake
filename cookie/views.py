@@ -1,18 +1,14 @@
 from django.shortcuts import render, get_object_or_404, render_to_response, get_list_or_404
 from django.template import RequestContext
 from django.http import HttpResponse, JsonResponse
-from .models import Product, Category, Order, OrderElem
+from .models import Product, Category, Order, OrderElem, Call
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import uuid
 from .forms import ProductsSearchForm
 
 
 def index(request):
-    if request.session.get('uuid', None) is None:
-        request.session['uuid'] = str(uuid.uuid4())
-        print('CREATE IN INDEX')
-    else:
-        print(request.session['uuid'])
+    check_uuid(request)
     order = __create_order(request.session['uuid'])
     category_index_list = Category.objects.filter(display=True).order_by('-priority')
     context = dict(categories=category_index_list[:6])
@@ -20,11 +16,7 @@ def index(request):
 
 
 def catalog(request, category_id):
-    if request.session.get('uuid', None) is None:
-        request.session['uuid'] = str(uuid.uuid4())
-        print('CREATE IN CATAL')
-    else:
-        print(request.session['uuid'])
+    check_uuid(request)
     category_name = get_object_or_404(Category, id=category_id)
     category_menu = Category.objects.filter(display=True)
     product_list = Product.objects.filter(category=category_id)
@@ -48,7 +40,6 @@ def product_detail(request, product_id):
     category_menu = Category.objects.filter(display=True)
     if request.session.get('uuid', None) is None:
         request.session['uuid'] = str(uuid.uuid4())
-        print('CREATE IN PRODUCT DETAIL')
     else:
         print(request.session['uuid'])
     product = get_object_or_404(Product, id=product_id)
@@ -62,11 +53,7 @@ def product_detail(request, product_id):
 
 
 def basket(request):
-    if request.session.get('uuid', None) is None:
-        request.session['uuid'] = str(uuid.uuid4())
-        print('CREATE IN BASKET')
-    else:
-        print(request.session['uuid'])
+    check_uuid(request)
     order = __create_order(request.session['uuid'])
 
     print(order)
@@ -87,11 +74,7 @@ def basket(request):
 
 
 def basket_closed(request):
-    if request.session.get('uuid', None) is None:
-        request.session['uuid'] = str(uuid.uuid4())
-        print('CREATE IN BCLOSED')
-    else:
-        print(request.session['uuid'])
+    check_uuid(request)
     order = __create_order(request.session['uuid'])
     if request.method == 'POST':
         form = request.POST
@@ -122,20 +105,16 @@ def basket_closed(request):
         'sum': order.sum,
         'address': order.address,
         'phone': order.phone,
+        'name': order.name,
 
     }
     return render(request, 'cookie/basket_closed.html', context=context)
 
 
 def search(request):
-    if request.session.get('uuid', None) is None:
-        request.session['uuid'] = str(uuid.uuid4())
-        print('CREATE IN SEARCH')
-    else:
-        print(request.session['uuid'])
+    check_uuid(request)
     form = ProductsSearchForm(request.GET)
     text_query = request.GET.get('q', None)
-    print(text_query)
     product_list = form.search()
     paginator = Paginator(product_list, 12)
     page = request.GET.get('page')
@@ -148,7 +127,6 @@ def search(request):
 
     context = {
         'products': products,
-        'anchor': 'search',
         'text_query': text_query,
     }
     return render(request, 'cookie/search.html', context=context)
@@ -178,17 +156,12 @@ def __create_order(uuid):
     except:
         order = Order(uuid=uuid)
         order.save()
-        print('CREATE OOOORDER IN CREATE ORDER')
     return order
 
 
 def add_to_basket(request):
     context = {}
-    if request.session.get('uuid', None) is None:
-        request.session['uuid'] = str(uuid.uuid4())
-        print('CREATE IN ADD TO BASKET')
-    else:
-        print(request.session['uuid'])
+    check_uuid(request)
     order = __create_order(request.session['uuid'])
     if request.method == 'GET':
         weight = request.GET.get('weight')
@@ -230,6 +203,7 @@ def delete_order_elem_basket_closed(request, id):
 
 
 def closed_order(request):
+    check_uuid(request)
     order = __create_order(request.session['uuid'])
     order.closed = True
     order.save()
@@ -247,3 +221,23 @@ def check_order(order):
         else:
             res = False
     return res
+
+
+def call(request):
+    check_uuid(request)
+    if request.method == 'GET':
+        form = request.GET
+        print(form)
+        name = form.get('name')
+        phone = form.get('phone')
+        address = form.get('address')
+        call = Call(name=name, phone=phone, address=address)
+        call.save()
+    return HttpResponse(content='ok', content_type="text/html")
+
+
+def check_uuid(request):
+    if request.session.get('uuid', None) is None:
+        request.session['uuid'] = str(uuid.uuid4())
+    else:
+        print(request.session['uuid'])

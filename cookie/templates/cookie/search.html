@@ -9,7 +9,7 @@
             </div>
             <div class="list-search-result">
                     {% for product in products %}
-                    <a id="" href="{% url 'cookie:product' product.object.id %}#product">
+                    <a id="" href="{% url 'cookie:product' product.object.id %}">
                         <div class="item-search-result">
                             <div class="item-search item-search-img">
                                 <img src="{{ product.object.photo_for_slider.url}}" />
@@ -62,5 +62,12 @@
         </div>
     </div>
 <div class="space space-after-catalog"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+        $(window).load(function (e) {
+            $('html,body').stop().animate({scrollTop: $('#search').offset().top}, 700);
+            e.preventDefault();
+        });
+</script>
 {% endblock content %}
 

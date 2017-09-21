@@ -63,3 +63,9 @@ class PhotoProduct(models.Model):
     photo = models.ImageField(upload_to='cookie/media', verbose_name='Фото')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
     main = models.BooleanField(default=False)
+
+
+class Call(models.Model):
+    name = models.CharField(max_length=100, null=True, blank=True)
+    phone = models.CharField(max_length=15, null=True, blank=True)
+    address = models.CharField(max_length=250, null=True, blank=True)

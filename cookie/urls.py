@@ -14,5 +14,6 @@ urlpatterns = [
     url(r'^delete_elem_basket/(?P<id>[0-9]+)$', views.delete_order_elem_basket, name='delete_elem_basket'),
     url(r'^search/$', views.search, name='search'),
     url(r'add_to_basket/$', views.add_to_basket, name='add_to_basket'),
-    url(r'closed_order/$', views.closed_order, name='closed_order'),
+    url(r'call/$', views.call, name='call'),
+    url(r'^closed_order/$', views.closed_order, name='closed_order'),
 ]

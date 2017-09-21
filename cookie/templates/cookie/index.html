@@ -3,7 +3,7 @@
 {% load staticfiles %}
 
 {% block content %}
-    <div class="body-wrapp index">
+    <div class="body-wrapp index" id="index">
                 <div class="row-about-company">
                     <div class="title-about-company">
                         <p>О компании</p>
@@ -147,4 +147,5 @@
             <div class="main-map">
             <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script><div style='overflow:hidden;height:310px;width:1200px;'><div id='gmap_canvas' style='height:310px;width:1200px;'></div><div><small><a href="http://embedgooglemaps.com">Click here to generate your map!</a></small></div><div><small><a href="http://www.genkigirl.net/">best alternatives for forex bot</a></small></div><style>#gmap_canvas img{max-width:none!important;background:none!important}</style></div><script type='text/javascript'>function init_map(){var myOptions = {zoom:16,center:new google.maps.LatLng(51.6914242,39.190839600000004),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(51.6914242,39.190839600000004)});infowindow = new google.maps.InfoWindow({content:'<strong>Кондитерский дом Исаева</strong><br>Воронеж Карпинского 58<br>'});google.maps.event.addListener(marker, 'click', function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);</script>
             </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 {% endblock content %}

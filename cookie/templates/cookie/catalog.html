@@ -7,7 +7,7 @@
             {% for category in category_menu %}
                 <div class="category-menu-name">
                     <div class="menu-marker"></div>
-                    <div class="menu-catalog-elem"><a href="{% url 'cookie:catalog' category.id %}#catalog"><p>{{ category.name }}</p></a></div>
+                    <div class="menu-catalog-elem"><a href="{% url 'cookie:catalog' category.id %}"><p>{{ category.name }}</p></a></div>
                 </div>
             {% endfor %}
         </div>
@@ -20,7 +20,7 @@
                     </div>
                     <div class="space row-after-title-procucts-in-catalog"></div>
                     {% for product in products %}
-                    <a id="" href="{% url 'cookie:product' product.id %}#product">
+                    <a id="" href="{% url 'cookie:product' product.id %}">
                         <div class="product-in-catalog">
                             <div class="product-elem-in-catalog product-pic-in-catalog">
                                 <img src="{{ product.photo_for_slider.url }}" />
@@ -68,4 +68,11 @@
         </div>
     </div>
 <div class="space space-after-catalog"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+        $(window).load(function (e) {
+            $('html,body').stop().animate({scrollTop: $('#catalog').offset().top}, 700);
+            e.preventDefault();
+        });
+</script>
 {% endblock content %}
