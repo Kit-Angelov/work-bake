@@ -5,12 +5,15 @@ from .models import Product, Category, Order, OrderElem, Call
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import uuid
 from .forms import ProductsSearchForm
+from .telebot import send_posts
+from datetime import datetime
+from django.core.mail import send_mail
 
 
 def index(request):
     check_uuid(request)
     order = __create_order(request.session['uuid'])
-    category_index_list = Category.objects.filter(display=True).order_by('-priority')
+    category_index_list = Category.objects.filter(display=True, for_main=True).order_by('-priority')
     context = dict(categories=category_index_list[:6])
     return render(request, 'cookie/index.html', context=context)
 
@@ -209,6 +212,23 @@ def closed_order(request):
     order.save()
     if check_order(order) is True:
         request.session['uuid'] = None
+        # send_mail('Subject here',
+        #           'Here is the message.',
+        #           'from@example.com',
+        #           ['to@example.com'],
+        #           fail_silently=False)
+        order_elems = order.orderelem_set.all()
+        elem_list = list()
+        for elem in order_elems:
+            attr = [str(elem.product.name), str(elem.weight), str(elem.sum)]
+            elem_list.append(attr)
+        send_posts(type='order',
+                   name=order.name,
+                   address=order.address,
+                   phone=order.phone,
+                   order_date=order.date_upload.strftime("%Y.%m.%d %H:%M"),
+                   order_sum=order.sum,
+                   elem_list=elem_list)
     return index(request)
 
 
@@ -233,6 +253,11 @@ def call(request):
         address = form.get('address')
         call = Call(name=name, phone=phone, address=address)
         call.save()
+        send_posts(type='call',
+                   name=name,
+                   address=address,
+                   phone=phone,
+                   order_date=datetime.now().strftime("%Y.%m.%d %H:%M"))
     return HttpResponse(content='ok', content_type="text/html")
 
 

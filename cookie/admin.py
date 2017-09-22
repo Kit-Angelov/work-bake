@@ -1,7 +1,13 @@
 from django.contrib import admin
 from .models import Product, Category, Order, OrderElem, PhotoProduct, Call
 
-admin.site.register(Product)
+
+class ProductAdmin(admin.ModelAdmin):
+    model = Product
+    list_display = ['name']
+    search_fields = ['name']
+
+admin.site.register(Product, ProductAdmin)
 admin.site.register(Category)
 admin.site.register(Order)
 admin.site.register(OrderElem)

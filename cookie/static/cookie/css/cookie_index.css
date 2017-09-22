@@ -1067,7 +1067,7 @@ p{
 }
 
 .name-product-in-catalog{
-    height: 30px;
+    height: auto;
 }
 
 .name-product-in-catalog p{
