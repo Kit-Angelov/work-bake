@@ -21,10 +21,10 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=24, verbose_name='Имя')
-    photo_for_slider = models.ImageField(upload_to='cookie/media', null=True, blank=True, verbose_name='Фото для слайдера (необходимо 4)')
+    name = models.CharField(max_length=100, verbose_name='Имя')
+    photo_for_slider = models.ImageField(upload_to='cookie/media', null=True, blank=True, verbose_name='Фото для слайдера')
     description = models.TextField(max_length=300, null=True, verbose_name='Описание')
-    alter_descript = models.TextField(max_length=57, null=True, verbose_name='Краткое описание в каталоге')
+    alter_descript = models.TextField(max_length=100, null=True, verbose_name='Краткое описание в каталоге')
     price = models.FloatField(default=0, verbose_name='Цена')
     date_upload = models.DateTimeField(default=timezone.now(), verbose_name='Дата загрузки')
     display = models.BooleanField(default=False, verbose_name='Показывать')
@@ -78,9 +78,6 @@ class PhotoProduct(models.Model):
     photo = models.ImageField(upload_to='cookie/media', verbose_name='Фото')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, verbose_name='Продукт')
     main = models.BooleanField(default=False, verbose_name='Главная')
-
-    def __str__(self):
-        return self.product
 
     class Meta:
         verbose_name = 'Фото продкта'

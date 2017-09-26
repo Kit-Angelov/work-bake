@@ -8,7 +8,7 @@ chat_id = '-1001112215520'
 bot = telebot.TeleBot(BOT_TOKEN)
 
 
-def send_posts(type, **kwargs):
+def send_telegram(type, **kwargs):
     if type == 'call':
         bot.send_message(chat_id,
                          'Звонок\nИмя: {0}\nАдрес: {1}\nТелефон: {2}\nДата: {3}'.format(kwargs['name'],

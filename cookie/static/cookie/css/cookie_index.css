@@ -933,12 +933,12 @@ p{
 /*Catalog*/
 
 .catalog{
-    height: 1009px;
+    height: 1100px;
 }
 
 .catalog-wrapp{
     width: 1125px;
-    height: 989px;
+    height: 1064px;
 }
 
 /*left menu*/
@@ -1038,7 +1038,7 @@ p{
 
 .product-in-catalog{
     width: 304px;
-    height: 308px;
+    height: 328px;
     float: left;
     text-align: left;
 }
@@ -1064,6 +1064,7 @@ p{
 .product-descript-in-catalog{
     width: 274px;
     height: 100px;
+    margin-top: 5px;
 }
 
 .name-product-in-catalog{
@@ -1071,7 +1072,8 @@ p{
 }
 
 .name-product-in-catalog p{
-    font-size: 18pt;
+    font-size: 16pt;
+    line-height: 1;
 }
 
 .price-product-in-catalog{
@@ -1079,13 +1081,17 @@ p{
 }
 
 .price-product-in-catalog p{
-    padding-top: 5px;
+    padding-top: 7px;
     font-family: Lora_regular;
     font-size: 12pt;
 }
 
 .text-product-in-catalog{
     height: 50px;
+}
+
+.text-product-in-catalog p{
+    line-height: 1;
 }
 
 .row-after-our-products-in-catalog{
@@ -1495,7 +1501,7 @@ p{
 
 .item-search-result{
     width: 275px;
-    height: 270px;
+    height: 340px;
     float: left;
 }
 
@@ -1519,11 +1525,11 @@ p{
 }
 
 .item-search-name p{
-    font-family: garamond_bold;
+    font-family: garamond_regular;
     font-size: 16pt;
     height: auto;
     margin: 0;
-    line-height: 18px;
+    line-height: 1;
 }
 
 .item-search-price{
@@ -1534,7 +1540,8 @@ p{
     font-size: 12pt;
     height: auto;
     margin: 0;
-    margin-top: 3px;
+    margin-top: 7px;
+    margin-bottom: 4px;
 }
 
 .item-search-descript{
@@ -1544,7 +1551,7 @@ p{
     font-family: garamond_regular;
     font-size: 14pt;
     margin: 0;
-    line-height: 20px;
+    line-height: 1;
 }
 
 .pagination-search-result{
