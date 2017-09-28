@@ -217,7 +217,7 @@ def closed_order(request):
         for elem in order_elems:
             attr = [str(elem.product.name), str(elem.weight), str(elem.sum)]
             elem_list.append(attr)
-        send_email(type="order", from_to=['nik16.09@bk.ru', 'kit.angelov@gmail.com'],
+        send_email(type="order", from_to=['isaev-v97@mail.ru', 'mila.te@yandex.ru'],
                    name=order.name,
                    address=order.address,
                    phone=order.phone,
@@ -255,7 +255,7 @@ def call(request):
         address = form.get('address')
         call = Call(name=name, phone=phone, address=address)
         call.save()
-        send_email(type="call", from_to=['nik16.09@bk.ru', 'kit.angelov@gmail.com'],
+        send_email(type="call", from_to=['isaev-v97@mail.ru', 'kit.angelov@gmail.com'],
                    name=name,
                    address=address,
                    phone=phone,

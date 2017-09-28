@@ -140,8 +140,8 @@ HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 #EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.mail.ru'
-EMAIL_HOST_USER = 'nik16.09@bk.ru'
-EMAIL_HOST_PASSWORD = 'm937ma1993'
+EMAIL_HOST_USER = 'isaev-v97@mail.ru'
+EMAIL_HOST_PASSWORD = 'q4gf6jj54rrE'
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 
