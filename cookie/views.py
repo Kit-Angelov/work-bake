@@ -169,10 +169,10 @@ def add_to_basket(request):
     if request.method == 'GET':
         weight = request.GET.get('weight')
         if weight == '':
-            weight = 0.0
+            weight = 0
         product_id = request.GET.get('product_id')
         product = Product.objects.get(id=product_id)
-        new_order_elem = OrderElem(product=product, order=order, weight=float(weight))
+        new_order_elem = OrderElem(product=product, order=order, count=int(weight))
         new_order_elem.save()
         print(new_order_elem.order.uuid)
     try:
@@ -215,7 +215,7 @@ def closed_order(request):
         order_elems = order.orderelem_set.all()
         elem_list = list()
         for elem in order_elems:
-            attr = [str(elem.product.name), str(elem.weight), str(elem.sum)]
+            attr = [str(elem.product.name), str(elem.count), str(elem.sum)]
             elem_list.append(attr)
         send_email(type="order", from_to=['isaev-v97@mail.ru', 'mila.te@yandex.ru'],
                    name=order.name,

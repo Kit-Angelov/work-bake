@@ -23,9 +23,10 @@ class Category(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=100, verbose_name='Имя')
     photo_for_slider = models.ImageField(upload_to='cookie/media', null=True, blank=True, verbose_name='Фото для слайдера')
-    description = models.TextField(max_length=300, null=True, verbose_name='Описание')
+    description = models.TextField(max_length=210, null=True, verbose_name='Описание')
     alter_descript = models.TextField(max_length=100, null=True, verbose_name='Краткое описание в каталоге')
     price = models.FloatField(default=0, verbose_name='Цена')
+    weight = models.IntegerField(default=0, verbose_name='грамм в упаковке')
     date_upload = models.DateTimeField(default=timezone.now(), verbose_name='Дата загрузки')
     display = models.BooleanField(default=False, verbose_name='Показывать')
     hit = models.BooleanField(default=False, verbose_name='Хит недели')
@@ -59,12 +60,12 @@ class Order(models.Model):
 class OrderElem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, verbose_name='Продукт')
     order = models.ForeignKey(Order, on_delete=models.CASCADE, null=True, verbose_name='Заказ')
-    weight = models.FloatField(null=True, verbose_name='Вес')
+    count = models.IntegerField(null=True, verbose_name='Вес')
     sum = models.FloatField(default=0, verbose_name='Сумма')
 
     @property
     def sum(self):
-        return self.weight * self.product.price
+        return self.count * self.product.price
 
     def add_total_sum(self):
         self.order.sum += self.order.sum + self.sum

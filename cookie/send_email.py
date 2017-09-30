@@ -17,7 +17,7 @@ def send_email(type, from_to, **kwargs):
         elem_list = kwargs['elem_list']
         order = str()
         for attr in elem_list:
-            order += '--------\nПродукт: {0}\nВес: {1} КГ\nСумма: {2} Р\n-------'.format(str(attr[0]), str(attr[1]), str(attr[2]))
+            order += '--------\nПродукт: {0}\nКод-во: {1} Упк.\nСумма: {2} Р\n-------'.format(str(attr[0]), str(attr[1]), str(attr[2]))
         send_mail('Заказ',
                   'Имя: {0}\nАдрес: {1}\nТелефон: {2}\nДата заказа: {3}\nСумма заказа: {4} Р.\n{5}'.format(
                       kwargs['name'],

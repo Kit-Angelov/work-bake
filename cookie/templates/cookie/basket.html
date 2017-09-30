@@ -22,7 +22,7 @@
                             </div>
                             <div class="item-basket item-basket-weight">
                                 <p>
-                                    {{ elem.weight|gramm }} граммов
+                                    Кол-во упаковок: {{ elem.count }}
                                 </p>
                             </div>
                             <div class="item-basket item-basket-sum">
@@ -92,7 +92,7 @@
                         </div>
                         <div class="modal-order-form-elem second-modal-order-form-elem">
                             <p>Телефон</p>
-                            <input required type="tel" id="phone_order " name="phone">
+                            <input required type="tel" id="phone-order" name="phone-order">
                         </div>
                         <div class="modal-order-form-elem third-modal-order-form-elem">
                             <p>Имя (не ФИО)</p>
@@ -183,7 +183,7 @@ $(document).ready(function() { // вся мaгия пoсле зaгрузки с�
 </script>
 <script type="text/javascript">
 jQuery(function($){
-   $("#phone_order").mask("+7(999) 999-9999");
+   $("#phone-order").mask("+7(999) 999-9999");
 });
 </script>
 <script>

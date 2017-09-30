@@ -23,6 +23,12 @@
     src: url("/static/cookie/font/Lora-Bold.ttf");
 }
 
+#map {
+    width: 100%;
+    height: 310px;
+    background-color: grey;
+}
+
 html{
     width: 100%;
     margin: 0;
@@ -933,12 +939,12 @@ p{
 /*Catalog*/
 
 .catalog{
-    height: 1100px;
+    height: 1140px;
 }
 
 .catalog-wrapp{
     width: 1125px;
-    height: 1064px;
+    height: 1104px;
 }
 
 /*left menu*/
@@ -1038,7 +1044,7 @@ p{
 
 .product-in-catalog{
     width: 304px;
-    height: 328px;
+    height: 358px;
     float: left;
     text-align: left;
 }
@@ -1082,6 +1088,15 @@ p{
 
 .price-product-in-catalog p{
     padding-top: 7px;
+    font-family: Lora_regular;
+    font-size: 12pt;
+}
+
+.weight-product-in-catalog{
+    height: 25px;
+}
+
+.weight-product-in-catalog p{
     font-family: Lora_regular;
     font-size: 12pt;
 }
@@ -1331,10 +1346,21 @@ p{
     color: #5b5b5b;
 }
 
+.product-weight{
+    height: auto;
+    margin-bottom: 15px;
+    margin-top: 4px;
+}
+
+.product-weight b{
+    font-family: Lora_regular;
+    font-size: 12pt;
+}
+
 .product-price{
     height: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 17px;
+    margin-bottom: 12px;
 }
 
 .product-price b{
@@ -1356,6 +1382,7 @@ p{
 .product-text-descript{
     height: auto;
     max-height: 170px;
+    margin-top: 0px;
 }
 
 .product-text-descript p{
@@ -1373,17 +1400,18 @@ p{
 
 .product-form-price{
     height: 30px;
-    width: 90px;
+    width: 150px;
     margin-right: 30px;
     float: left;
 }
 
 .product-form-price p{
     font-family: Lora_regular;
-    font-size: 12pt;
+    font-size: 10pt;
     float: left;
     margin: 0;
-    margin-top: 7px;
+    padding-left: 5px;
+    margin-top: 1px;
 }
 
 .product-form-price input{
@@ -1470,7 +1498,7 @@ p{
 /* search */
 
 .search{
-    height: 945px;
+    height: 955px;
 }
 
 .row-search-result{
@@ -1495,13 +1523,13 @@ p{
 
 .list-search-result{
     width: 1100px;
-    height: 860px;
+    height: 870px;
     margin-top: 20px;
 }
 
 .item-search-result{
     width: 275px;
-    height: 340px;
+    height: 350px;
     float: left;
 }
 

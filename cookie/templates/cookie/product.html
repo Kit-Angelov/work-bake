@@ -47,15 +47,17 @@
                         </div>
                         <div class="product-main">
                             <div class="product-main-elem product-cat-name"><p>Категория: {{ product.category.name }}</p></div>
-                            <div class="product-main-elem product-price"><b>{{ product.price }} Р/кг</b></div>
+                            <div class="product-main-elem product-price"><b>{{ product.price }} Р/Упаковка</b></div>
+                            <div class="product-main-elem product-title-descript"><p>Вес упаковки:</p></div>
+                            <div class="product-main-elem product-weight"><b>{{ product.weight }} граммов</b></div>
                             <div class="product-main-elem product-title-descript"><p>Описание:</p></div>
                             <div class="product-main-elem product-text-descript"><p>{{ product.description }}</p></div>
                             <div class="row-input-button">
                                 <form method="post" id="weight-form">
                                     {% csrf_token %}
                                 <div class="product-main-elem product-form-price">
-                                    <input id='weight-product' required type="number" pattern="^\d+$" name="{{ product.id }}" min="0.1" max="10" step="0.1">
-                                    <p>кг</p>
+                                    <input id='weight-product' required type="number" pattern="^\d+$" name="{{ product.id }}" min="1" max="10" step="1">
+                                    <p>Кол-во<br/>упаковок</p>
                                 </div>
                                 <div class="product-main-elem product-button-basket">
                                     <div class="button-product-wrap" id="button-wrapp">

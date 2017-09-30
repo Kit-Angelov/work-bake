@@ -21,9 +21,14 @@
                             </div>
                             <div class="item-search item-search-price">
                                 <p>
-                                    {{ product.price }} Р/кг
+                                    {{ product.price }} Р/Упаковка
                                 </p>
                             </div>
+                            <div class="item-search item-search-price">
+                                    <p>
+                                        Вес упаковки: {{ product.object.weight }} граммов
+                                    </p>
+                                </div>
                             <div class="item-search item-search-descript">
                                 <p>
                                     {{ product.object.alter_descript}}
